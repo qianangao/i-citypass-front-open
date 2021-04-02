@@ -45,6 +45,7 @@ const CardContent = ({ cardData }) => (
             <img src={item.avatar} alt="" />
             <h4>{item.title}</h4>
             <p>{item.content}</p>
+            <span>{item.brContent}</span>
           </li>
         ))}
     </ul>

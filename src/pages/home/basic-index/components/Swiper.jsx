@@ -53,7 +53,7 @@ export default class SwiperComponent extends React.Component {
                   <div className="mask">
                     <div className="icon">
                       <p className={['up', index === 0 ? 'up-big' : null].join(' ')}>
-                        {item.conutDes}
+                        {item.countDes}
                       </p>
                       <p className="down">{item.unit}</p>
                       <img src={iconPic} alt="" />

@@ -33,16 +33,16 @@ const router = [
           },
         ],
       },
-      {
-        path: '/home',
-        component: '../layouts/BasicLayout',
-        routes: [
-          {
-            name: 'home',
-            component: './home/basic-index',
-          },
-        ],
-      },
+      // {
+      //   path: '/home',
+      //   component: '../layouts/BasicLayout',
+      //   routes: [
+      //     {
+      //       name: 'home',
+      //       component: './home/basic-index',
+      //     },
+      //   ],
+      // },
       {
         path: '/',
         component: '../layouts/BasicLayout',
@@ -52,6 +52,11 @@ const router = [
           {
             path: '/',
             redirect: '/dashboard/analysis',
+          },
+          {
+            path: '/home',
+            name: 'home',
+            component: './home/basic-index',
           },
           {
             path: '/dashboard',
