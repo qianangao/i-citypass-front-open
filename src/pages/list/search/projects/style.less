@@ -1,7 +1,47 @@
 @import '~antd/es/style/themes/default.less';
 @import './utils/utils.less';
 
-.coverCardList {
+.table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.thead {
+  color: #f99;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.thead tr th {
+  padding: 6px 13px;
+  color: #000;
+  border: 1px solid #dfe2e5;
+}
+
+.table tr td {
+  min-width: 90px;
+  padding: 4px 8px;
+  white-space: normal;
+  vertical-align: top;
+  word-wrap: break-word;
+  border: 1px solid #d9d9d9;
+  cursor: default;
+}
+
+.h3 {
+  padding: 25px 0;
+}
+
+.mark {
+  color: #666;
+  font-size: 14px;
+  line-height: 26px;
+}
+
+.styles {
   .card {
     :global {
       .ant-card-meta-title {

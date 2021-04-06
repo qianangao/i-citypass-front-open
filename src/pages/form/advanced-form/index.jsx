@@ -5,6 +5,7 @@ import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import { connect } from 'umi';
 import TableForm from './components/TableForm';
 import styles from './style.less';
+
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const fieldLabels = {

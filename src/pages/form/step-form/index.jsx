@@ -6,6 +6,7 @@ import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 import Step3 from './components/Step3';
 import styles from './style.less';
+
 const { Step } = Steps;
 
 const getCurrentStepAndComponent = (current) => {

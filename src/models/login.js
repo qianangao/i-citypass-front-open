@@ -4,6 +4,7 @@ import { fakeAccountLogin } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { message } from 'antd';
+
 const Model = {
   namespace: 'login',
   state: {

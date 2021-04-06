@@ -1,4 +1,5 @@
 import { fakeRegister } from './service';
+
 const Model = {
   namespace: 'userAndregister',
   state: {

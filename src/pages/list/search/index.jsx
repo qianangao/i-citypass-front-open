@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Input } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import { history } from 'umi';
 
@@ -25,10 +24,12 @@ class Search extends Component {
         break;
     }
   };
+
   handleFormSubmit = (value) => {
     // eslint-disable-next-line no-console
     console.log(value);
   };
+
   getTabKey = () => {
     const { match, location } = this.props;
     const url = match.path === '/' ? '' : match.path;
@@ -45,39 +46,21 @@ class Search extends Component {
     const tabList = [
       {
         key: 'articles',
-        tab: '文章',
-      },
-      {
-        key: 'projects',
-        tab: '项目',
+        tab: '调用发起者',
       },
       {
         key: 'applications',
-        tab: '应用',
+        tab: '请求头格式',
+      },
+      {
+        key: 'projects',
+        tab: '错误码合集',
       },
     ];
-    const mainSearch = (
-      <div
-        style={{
-          textAlign: 'center',
-        }}
-      >
-        <Input.Search
-          placeholder="请输入"
-          enterButton="搜索"
-          size="large"
-          onSearch={this.handleFormSubmit}
-          style={{
-            maxWidth: 522,
-            width: '100%',
-          }}
-        />
-      </div>
-    );
     const { children } = this.props;
     return (
       <PageContainer
-        content={mainSearch}
+        // content={mainSearch}
         tabList={tabList}
         tabActiveKey={this.getTabKey()}
         onTabChange={this.handleTabChange}

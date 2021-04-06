@@ -9,6 +9,7 @@ import { KoniDetailPanel } from './components/EditorDetailPanel';
 import { KoniItemPanel } from './components/EditorItemPanel';
 import { KoniToolbar } from './components/EditorToolbar';
 import styles from './index.less';
+
 GGEditor.setTrackable(false);
 export default () => (
   <PageContainer

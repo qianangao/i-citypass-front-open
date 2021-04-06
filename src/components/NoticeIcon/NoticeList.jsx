@@ -1,4 +1,4 @@
-import { Avatar, List } from 'antd';
+import { List } from 'antd';
 import React from 'react';
 import classNames from 'classnames';
 import styles from './NoticeList.less';
@@ -37,13 +37,13 @@ const NoticeList = ({
             [styles.read]: item.read,
           }); // eslint-disable-next-line no-nested-ternary
 
-          const leftIcon = item.avatar ? (
-            typeof item.avatar === 'string' ? (
-              <Avatar className={styles.avatar} src={item.avatar} />
-            ) : (
-              <span className={styles.iconElement}>{item.avatar}</span>
-            )
-          ) : null;
+          // const leftIcon = item.avatar ? (
+          //   typeof item.avatar === 'string' ? (
+          //     <Avatar className={styles.avatar} src={item.avatar} />
+          //   ) : (
+          //     <span className={styles.iconElement}>{item.avatar}</span>
+          //   )
+          // ) : null;
           return (
             <List.Item
               className={itemCls}
@@ -54,7 +54,7 @@ const NoticeList = ({
             >
               <List.Item.Meta
                 className={styles.meta}
-                avatar={leftIcon}
+                // avatar={leftIcon}
                 title={
                   <div className={styles.title}>
                     {item.title}

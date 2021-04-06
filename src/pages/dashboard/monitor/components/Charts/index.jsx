@@ -4,6 +4,7 @@ import Pie from './Pie';
 import TagCloud from './TagCloud';
 import WaterWave from './WaterWave';
 import Map from './Map';
+
 const Charts = {
   Pie,
   WaterWave,

@@ -1,0 +1,94 @@
+@import '~antd/es/style/themes/default.less';
+@import './utils/utils.less';
+
+.table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.thead {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.thead tr th {
+  padding: 6px 13px;
+  color: #000;
+  border: 1px solid #dfe2e5;
+}
+
+.table tr td {
+  min-width: 90px;
+  padding: 4px 8px;
+  white-space: normal;
+  vertical-align: top;
+  word-wrap: break-word;
+  border: 1px solid #d9d9d9;
+  cursor: default;
+}
+
+.h3 {
+  padding: 25px 0;
+}
+
+.mark {
+  color: #666;
+  font-size: 14px;
+  line-height: 26px;
+}
+
+.styles {
+  .card {
+    :global {
+      .ant-card-meta-title {
+        margin-bottom: 4px;
+        & > a {
+          display: inline-block;
+          max-width: 100%;
+          color: @heading-color;
+        }
+      }
+      .ant-card-meta-description {
+        height: 44px;
+        overflow: hidden;
+        line-height: 22px;
+      }
+    }
+
+    &:hover {
+      :global {
+        .ant-card-meta-title > a {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+
+  .cardItemContent {
+    display: flex;
+    height: 20px;
+    margin-top: 16px;
+    margin-bottom: -4px;
+    line-height: 20px;
+    & > span {
+      flex: 1;
+      color: @text-color-secondary;
+      font-size: 12px;
+    }
+    .avatarList {
+      flex: 0 1 auto;
+    }
+  }
+  .cardList {
+    margin-top: 24px;
+  }
+
+  :global {
+    .ant-list .ant-list-item-content-single {
+      max-width: 100%;
+    }
+  }
+}
