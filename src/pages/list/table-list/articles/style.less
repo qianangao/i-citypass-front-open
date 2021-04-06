@@ -1,0 +1,87 @@
+@import '~antd/es/style/themes/default.less';
+
+a.listItemMetaTitle {
+  color: @heading-color;
+}
+.listItemExtra {
+  width: 272px;
+  height: 1px;
+}
+.selfTrigger {
+  margin-left: 12px;
+}
+
+@media screen and (max-width: @screen-xs) {
+  .selfTrigger {
+    display: block;
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: @screen-md) {
+  .selfTrigger {
+    display: block;
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: @screen-lg) {
+  .listItemExtra {
+    width: 0;
+    height: 1px;
+  }
+}
+.url {
+  color: #666;
+  font-size: 14px;
+  line-height: 26px;
+}
+.title {
+  padding: 40px 0 20px;
+  font-weight: 800;
+}
+.mark {
+  padding: 25px 0;
+  font-weight: 800;
+}
+.table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.thead {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.thead tr th {
+  padding: 6px 13px;
+  color: #000;
+  border: 1px solid #dfe2e5;
+}
+
+.table tr td {
+  min-width: 90px;
+  padding: 4px 8px;
+  white-space: normal;
+  vertical-align: top;
+  word-wrap: break-word;
+  border: 1px solid #d9d9d9;
+  cursor: default;
+}
+.box {
+  padding: 20px;
+  overflow: auto;
+  background: #f9f9f9;
+}
+
+.ertitle {
+  padding: 10px 0;
+  font-weight: 400;
+}
+
+.ertitle .span {
+  margin-left: 50px;
+  color: #ccc;
+}

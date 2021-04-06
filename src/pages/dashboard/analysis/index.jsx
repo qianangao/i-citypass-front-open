@@ -17,7 +17,9 @@ class Analysis extends Component {
     currentTabKey: '',
     rangePickerValue: getTimeDistance('year'),
   };
+
   reqRef = 0;
+
   timeoutId = 0;
 
   componentDidMount() {
@@ -43,11 +45,13 @@ class Analysis extends Component {
       salesType: e.target.value,
     });
   };
+
   handleTabChange = (key) => {
     this.setState({
       currentTabKey: key,
     });
   };
+
   handleRangePickerChange = (rangePickerValue) => {
     const { dispatch } = this.props;
     this.setState({
@@ -57,6 +61,7 @@ class Analysis extends Component {
       type: 'dashboardAndanalysis/fetchSalesData',
     });
   };
+
   selectDate = (type) => {
     const { dispatch } = this.props;
     this.setState({
@@ -66,6 +71,7 @@ class Analysis extends Component {
       type: 'dashboardAndanalysis/fetchSalesData',
     });
   };
+
   isActive = (type) => {
     const { rangePickerValue } = this.state;
 

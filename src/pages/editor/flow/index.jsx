@@ -9,6 +9,7 @@ import { FlowDetailPanel } from './components/EditorDetailPanel';
 import { FlowItemPanel } from './components/EditorItemPanel';
 import { FlowToolbar } from './components/EditorToolbar';
 import styles from './index.less';
+
 GGEditor.setTrackable(false);
 export default () => (
   <PageContainer

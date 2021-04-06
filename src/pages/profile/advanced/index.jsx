@@ -24,6 +24,7 @@ import React, { Component, Fragment } from 'react';
 import classNames from 'classnames';
 import { connect } from 'umi';
 import styles from './style.less';
+
 const { Step } = Steps;
 const ButtonGroup = Button.Group;
 const menu = (
@@ -242,6 +243,7 @@ class Advanced extends Component {
       operationKey: key,
     });
   };
+
   onTabChange = (tabActiveKey) => {
     this.setState({
       tabActiveKey,

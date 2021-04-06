@@ -6,6 +6,7 @@ import moment from 'moment';
 import Radar from './components/Radar';
 import EditableLinkGroup from './components/EditableLinkGroup';
 import styles from './style.less';
+
 const links = [
   {
     title: '操作一',

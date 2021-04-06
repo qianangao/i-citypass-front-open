@@ -9,6 +9,7 @@ import { MindDetailPanel } from './components/EditorDetailPanel';
 import { MindToolbar } from './components/EditorToolbar';
 import data from './worldCup2018.json';
 import styles from './index.less';
+
 GGEditor.setTrackable(false);
 export default () => (
   <PageContainer

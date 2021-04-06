@@ -9,6 +9,7 @@ import React from 'react';
 import { connect } from 'umi';
 import numeral from 'numeral';
 import stylesApplications from './index.less';
+
 export function formatWan(val) {
   const v = val * 1;
   if (!v || Number.isNaN(v)) return '';

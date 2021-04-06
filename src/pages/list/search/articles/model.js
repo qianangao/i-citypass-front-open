@@ -1,4 +1,5 @@
 import { queryFakeList } from './service';
+
 const Model = {
   namespace: 'listAndsearchAndarticles',
   state: {
