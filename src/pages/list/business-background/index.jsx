@@ -8,16 +8,16 @@ class Search extends Component {
     const url = match.url === '/' ? '' : match.url;
 
     switch (key) {
-      case 'articles':
-        history.push(`${url}/articles`);
+      case 'call-originator':
+        history.push(`${url}/call-originator`);
         break;
 
-      case 'applications':
-        history.push(`${url}/applications`);
+      case 'requestHeader-format':
+        history.push(`${url}/requestHeader-format`);
         break;
 
-      case 'projects':
-        history.push(`${url}/projects`);
+      case 'errorCode-set':
+        history.push(`${url}/errorCode-set`);
         break;
 
       default:
@@ -39,21 +39,21 @@ class Search extends Component {
       return tabKey;
     }
 
-    return 'articles';
+    return 'call-originator';
   };
 
   render() {
     const tabList = [
       {
-        key: 'articles',
+        key: 'call-originator',
         tab: '调用发起者',
       },
       {
-        key: 'applications',
+        key: 'requestHeader-format',
         tab: '请求头格式',
       },
       {
-        key: 'projects',
+        key: 'errorCode-set',
         tab: '错误码合集',
       },
     ];

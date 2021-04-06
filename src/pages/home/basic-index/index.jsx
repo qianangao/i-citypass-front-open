@@ -165,7 +165,7 @@ const StepContent = ({ stepData }) => (
 
 const SwiperContent = ({ swiperObj }) => (
   <div className={styles.swiperContent}>
-    <h2>i 深圳成果</h2>
+    <h2>智慧城市APP成果</h2>
     <SwiperComponent swiperObj={swiperObj} />
   </div>
 );
