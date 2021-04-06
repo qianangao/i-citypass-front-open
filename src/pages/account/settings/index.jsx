@@ -7,6 +7,7 @@ import BindingView from './components/binding';
 import NotificationView from './components/notification';
 import SecurityView from './components/security';
 import styles from './style.less';
+
 const { Item } = Menu;
 
 class Settings extends Component {
@@ -61,15 +62,18 @@ class Settings extends Component {
     const { menuMap } = this.state;
     return Object.keys(menuMap).map((item) => <Item key={item}>{menuMap[item]}</Item>);
   };
+
   getRightTitle = () => {
     const { selectKey, menuMap } = this.state;
     return menuMap[selectKey];
   };
+
   selectKey = (key) => {
     this.setState({
       selectKey: key,
     });
   };
+
   resize = () => {
     if (!this.main) {
       return;
@@ -96,6 +100,7 @@ class Settings extends Component {
       });
     });
   };
+
   renderChildren = () => {
     const { selectKey } = this.state;
 

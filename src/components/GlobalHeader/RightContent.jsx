@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'umi';
 import Avatar from './AvatarDropdown';
 import styles from './index.less';
+
 const ENVTagColor = {
   dev: 'orange',
   test: 'green',

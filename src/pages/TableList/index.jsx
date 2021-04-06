@@ -213,7 +213,7 @@ const TableList = () => {
       <ProTable
         headerTitle={intl.formatMessage({
           id: 'pages.searchTable.title',
-          defaultMessage: '查询表格',
+          defaultMessage: '授权接口',
         })}
         actionRef={actionRef}
         rowKey="key"

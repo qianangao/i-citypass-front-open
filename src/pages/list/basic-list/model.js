@@ -1,4 +1,5 @@
 import { addFakeList, queryFakeList, removeFakeList, updateFakeList } from './service';
+
 const Model = {
   namespace: 'listAndbasicList',
   state: {
