@@ -51,42 +51,37 @@ const router = [
         routes: [
           {
             path: '/',
-            redirect: '/dashboard/analysis',
+            redirect: '/home/basic-index',
+            // redirect: '/dashboard/analysis',
           },
           {
             path: '/home',
             name: 'home',
-            component: './home/basic-index',
-          },
-          {
-            path: '/dashboard',
-            name: 'dashboard',
-            // icon: 'dashboard',
             routes: [
               {
                 path: '/',
-                redirect: '/dashboard/analysis',
+                redirect: '/home/basic-index',
               },
               {
-                // name: 'analysis',
-                // icon: 'smile',
-                // path: '/dashboard/analysis',
-                component: './dashboard/analysis',
+                component: './home/basic-index',
               },
-              // {
-              //   name: 'monitor',
-              //   icon: 'smile',
-              //   path: '/dashboard/monitor',
-              //   component: './dashboard/monitor',
-              // },
-              // {
-              //   name: 'workplace',
-              //   icon: 'smile',
-              //   path: '/dashboard/workplace',
-              //   component: './dashboard/workplace',
-              // },
             ],
           },
+          // {
+          //   path: '/dashboard',
+          //   name: 'dashboard',
+          //   routes: [
+          //     {
+          //       path: '/',
+          //       redirect: '/dashboard/analysis',
+          //     },
+          //     {
+          //       // name: 'analysis',
+          //       // path: '/dashboard/analysis',
+          //       component: './dashboard/analysis',
+          //     }
+          //   ],
+          // },
           {
             path: '/form',
             // icon: 'form',
