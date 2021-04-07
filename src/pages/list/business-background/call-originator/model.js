@@ -1,7 +1,7 @@
 import { queryFakeList } from './service';
 
 const Model = {
-  namespace: 'listAndsearchAndarticles',
+  namespace: 'listAndcallOriginator',
   state: {
     list: [],
   },

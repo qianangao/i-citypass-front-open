@@ -51,37 +51,42 @@ const router = [
         routes: [
           {
             path: '/',
-            redirect: '/home/basic-index',
-            // redirect: '/dashboard/analysis',
+            redirect: '/dashboard/analysis',
           },
           {
             path: '/home',
             name: 'home',
+            component: './home/basic-index',
+          },
+          {
+            path: '/dashboard',
+            name: 'dashboard',
+            // icon: 'dashboard',
             routes: [
               {
                 path: '/',
-                redirect: '/home/basic-index',
+                redirect: '/dashboard/analysis',
               },
               {
-                component: './home/basic-index',
+                // name: 'analysis',
+                // icon: 'smile',
+                // path: '/dashboard/analysis',
+                component: './dashboard/analysis',
               },
+              // {
+              //   name: 'monitor',
+              //   icon: 'smile',
+              //   path: '/dashboard/monitor',
+              //   component: './dashboard/monitor',
+              // },
+              // {
+              //   name: 'workplace',
+              //   icon: 'smile',
+              //   path: '/dashboard/workplace',
+              //   component: './dashboard/workplace',
+              // },
             ],
           },
-          // {
-          //   path: '/dashboard',
-          //   name: 'dashboard',
-          //   routes: [
-          //     {
-          //       path: '/',
-          //       redirect: '/dashboard/analysis',
-          //     },
-          //     {
-          //       // name: 'analysis',
-          //       // path: '/dashboard/analysis',
-          //       component: './dashboard/analysis',
-          //     }
-          //   ],
-          // },
           {
             path: '/form',
             // icon: 'form',
@@ -118,49 +123,68 @@ const router = [
             routes: [
               {
                 path: '/list',
-                redirect: '/list/search',
+                redirect: '/list/business-background',
               },
               {
-                path: '/list/search',
-                name: 'search-list',
-                component: './list/search',
+                path: '/list/business-background',
+                name: 'business-background',
+                component: './list/business-background',
                 routes: [
                   {
-                    path: '/list/search',
-                    redirect: '/list/search/articles',
+                    path: '/list/business-background',
+                    redirect: '/list/business-background/call-originator',
                   },
                   {
-                    name: 'articles',
+                    name: 'call-originator',
                     icon: 'smile',
-                    path: '/list/search/articles',
-                    component: './list/search/articles',
+                    path: '/list/business-background/call-originator',
+                    component: './list/business-background/call-originator',
                   },
                   {
-                    name: 'projects',
+                    name: 'requestHeader-format',
                     icon: 'smile',
-                    path: '/list/search/projects',
-                    component: './list/search/projects',
+                    path: '/list/business-background/requestHeader-format',
+                    component: './list/business-background/requestHeader-format',
                   },
                   {
-                    name: 'applications',
+                    name: 'errorCode-set',
                     icon: 'smile',
-                    path: '/list/search/applications',
-                    component: './list/search/applications',
+                    path: '/list/business-background/errorCode-set',
+                    component: './list/business-background/errorCode-set',
                   },
                 ],
               },
               {
-                path: '/',
-                redirect: '/list/table-list',
+                path: '/list/authorization-interface',
+                name: 'authorization-interface',
+                // component: './list/authorization-interface',
+                routes: [
+                  {
+                    path: '/list/authorization-interface',
+                    redirect: '/list/authorization-interface/queryFor-authorization',
+                  },
+                  {
+                    name: 'queryFor-authorization',
+                    icon: 'smile',
+                    path: '/list/authorization-interface/queryFor-authorization',
+                    component: './list/authorization-interface/queryFor-authorization',
+                  },
+                  {
+                    name: 'modifyUserAuthorization-status',
+                    icon: 'smile',
+                    path: '/list/authorization-interface/modifyUserAuthorization-status',
+                    component: './list/authorization-interface/modifyUserAuthorization-status',
+                  },
+                  {
+                    name: 'get-requestcode',
+                    icon: 'smile',
+                    path: '/list/authorization-interface/get-requestcode',
+                    component: './list/authorization-interface/get-requestcode',
+                  },
+                ],
               },
               {
-                name: 'table-list',
-                icon: 'smile',
-                path: '/list/table-list',
-                component: './list/table-list',
-              },
-              {
-                name: 'basic-list',
+                name: 'authorization-interface',
                 icon: 'smile',
                 path: '/list/basic-list',
                 component: './list/basic-list',
