@@ -59,11 +59,12 @@ const router = [
             routes: [
               {
                 path: '/',
-                redirect: '/home/basic-index'
-              },{
-                component: './home/basic-index'
-              }
-            ]
+                redirect: '/home/basic-index',
+              },
+              {
+                component: './home/basic-index',
+              },
+            ],
           },
           // {
           //   path: '/home',
@@ -153,7 +154,7 @@ const router = [
               {
                 path: '/list/authorization-interface',
                 name: 'authorization-interface',
-                // component: './list/authorization-interface',
+                component: './list/authorization-interface',
                 routes: [
                   {
                     path: '/list/authorization-interface',
@@ -176,6 +177,64 @@ const router = [
                     icon: 'smile',
                     path: '/list/authorization-interface/get-requestcode',
                     component: './list/authorization-interface/get-requestcode',
+                  },
+                ],
+              },
+              {
+                path: '/list/oAuth',
+                name: 'oAuth',
+                component: './list/oAuth',
+                routes: [
+                  {
+                    path: '/list/oAuth',
+                    redirect: '/list/oAuth/encryption-rules',
+                  },
+                  {
+                    name: 'encryption-rules',
+                    icon: 'smile',
+                    path: '/list/oAuth/encryption-rules',
+                    component: './list/oAuth/encryption-rules',
+                  },
+                  {
+                    name: 'get-accessToken',
+                    icon: 'smile',
+                    path: '/list/oAuth/get-accessToken',
+                    component: './list/oAuth/get-accessToken',
+                  },
+                  {
+                    name: 'refresh-accessToken',
+                    icon: 'smile',
+                    path: '/list/oAuth/refresh-accessToken',
+                    component: './list/oAuth/refresh-accessToken',
+                  },
+                  {
+                    name: 'check-accessToken',
+                    icon: 'smile',
+                    path: '/list/oAuth/check-accessToken',
+                    component: './list/oAuth/check-accessToken',
+                  },
+                  {
+                    name: 'get-userAccessToken',
+                    icon: 'smile',
+                    path: '/list/oAuth/get-userAccessToken',
+                    component: './list/oAuth/get-userAccessToken',
+                  },
+                ],
+              },
+              {
+                path: '/list/openApi',
+                name: 'openApi',
+                component: './list/openApi',
+                routes: [
+                  {
+                    path: '/list/openApi',
+                    redirect: '/list/openApi/get-userInfo',
+                  },
+                  {
+                    name: 'get-userInfo',
+                    icon: 'smile',
+                    path: '/list/openApi/get-userInfo',
+                    component: './list/openApi/get-userInfo',
                   },
                 ],
               },

@@ -37,7 +37,7 @@ export default class CommonComponent extends PureComponent {
               <span className="show-red">{tableData.requestUrl}</span>
             </div>
           </Card>
-          <p className="show-title">2.{tableData.isHeader ? '请求头参数 token' : '输入参数'}</p>
+          <p className="show-title">2.输入参数</p>
           <Card className="show-content" bordered={false}>
             <Table
               columns={columns}
@@ -51,7 +51,21 @@ export default class CommonComponent extends PureComponent {
           <Card className="show-content" bordered={false}>
             <div className="show-json">{tableData.passInJSON}</div>
           </Card>
-          <p className="show-title">4.返回json示例</p>
+          <p className="show-title">4.JAVA代码示例</p>
+          <Card className="show-content" bordered={false}>
+            <div className="show-json">{tableData.javaCode}</div>
+          </Card>
+          <p className="show-title">5.输出参数</p>
+          <Card className="show-content" bordered={false}>
+            <Table
+              columns={columns}
+              dataSource={tableData.outputParameters}
+              rowKey="key"
+              pagination={false}
+              bordered
+            ></Table>
+          </Card>
+          <p className="show-title">6.返回json示例</p>
           <Card className="show-content" bordered={false}>
             <div className="show-json">{tableData.returnInJson}</div>
           </Card>
