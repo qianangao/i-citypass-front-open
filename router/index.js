@@ -59,11 +59,12 @@ const router = [
             routes: [
               {
                 path: '/',
-                redirect: '/home/basic-index'
-              },{
-                component: './home/basic-index'
-              }
-            ]
+                redirect: '/home/basic-index',
+              },
+              {
+                component: './home/basic-index',
+              },
+            ],
           },
           // {
           //   path: '/home',
@@ -199,8 +200,13 @@ const router = [
             // icon: 'profile',
             routes: [
               {
+                path: '/profile/jsbridge',
+                redirect: '/profile/jsbridge',
+              },
+              {
+                name: 'jsbridge',
                 path: '/profile',
-                redirect: '/profile/basic',
+                component: './profile/jsbridge',
               },
               {
                 name: 'basic',
