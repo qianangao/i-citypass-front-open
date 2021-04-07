@@ -51,42 +51,38 @@ const router = [
         routes: [
           {
             path: '/',
-            redirect: '/dashboard/analysis',
+            redirect: '/home/basic-index',
           },
           {
             path: '/home',
             name: 'home',
-            component: './home/basic-index',
-          },
-          {
-            path: '/dashboard',
-            name: 'dashboard',
-            // icon: 'dashboard',
             routes: [
               {
                 path: '/',
-                redirect: '/dashboard/analysis',
-              },
-              {
-                // name: 'analysis',
-                // icon: 'smile',
-                // path: '/dashboard/analysis',
-                component: './dashboard/analysis',
-              },
-              // {
-              //   name: 'monitor',
-              //   icon: 'smile',
-              //   path: '/dashboard/monitor',
-              //   component: './dashboard/monitor',
-              // },
-              // {
-              //   name: 'workplace',
-              //   icon: 'smile',
-              //   path: '/dashboard/workplace',
-              //   component: './dashboard/workplace',
-              // },
-            ],
+                redirect: '/home/basic-index'
+              },{
+                component: './home/basic-index'
+              }
+            ]
           },
+          // {
+          //   path: '/home',
+          //   name: 'home',
+          //   component: './home/basic-index',
+          // },
+          // {
+          //   path: '/dashboard',
+          //   name: 'dashboard',
+          //   routes: [
+          //     {
+          //       path: '/',
+          //       redirect: '/dashboard/analysis',
+          //     },
+          //     {
+          //       component: './dashboard/analysis'
+          //     }
+          //   ],
+          // },
           {
             path: '/form',
             // icon: 'form',
@@ -221,62 +217,9 @@ const router = [
             ],
           },
           {
-            path: '/result',
-            name: 'result',
-            // icon: 'CheckCircleOutlined',
-            routes: [
-              {
-                path: '/result',
-                redirect: '/result/success',
-              },
-              {
-                name: 'success',
-                icon: 'smile',
-                path: '/result/success',
-                component: './result/success',
-              },
-              {
-                name: 'fail',
-                icon: 'smile',
-                path: '/result/fail',
-                component: './result/fail',
-              },
-            ],
-          },
-          {
-            path: '/exception',
-            name: 'exception',
-            // icon: 'warning',
-            routes: [
-              {
-                path: '/exception',
-                redirect: '/exception/403',
-              },
-              {
-                name: '403',
-                icon: 'smile',
-                path: '/exception/403',
-                component: './exception/403',
-              },
-              {
-                name: '404',
-                icon: 'smile',
-                path: '/exception/404',
-                component: './exception/404',
-              },
-              {
-                name: '500',
-                icon: 'smile',
-                path: '/exception/500',
-                component: './exception/500',
-              },
-            ],
-          },
-          {
             path: '/account',
             name: 'account',
             // icon: 'user',
-
             routes: [
               {
                 path: '/account',
@@ -293,35 +236,6 @@ const router = [
                 icon: 'smile',
                 path: '/account/settings',
                 component: './account/settings',
-              },
-            ],
-          },
-          {
-            path: '/editor',
-            name: 'editor',
-            // icon: 'highlight',
-            routes: [
-              {
-                path: '/editor',
-                redirect: '/editor/flow',
-              },
-              {
-                name: 'flow',
-                icon: 'smile',
-                path: '/editor/flow',
-                component: './editor/flow',
-              },
-              {
-                name: 'mind',
-                icon: 'smile',
-                path: '/editor/mind',
-                component: './editor/mind',
-              },
-              {
-                name: 'koni',
-                icon: 'smile',
-                path: '/editor/koni',
-                component: './editor/koni',
               },
             ],
           },
