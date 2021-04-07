@@ -155,14 +155,33 @@ const router = [
                 ],
               },
               {
-                path: '/authorization-interface',
-                redirect: '/list/authorization-interface',
-              },
-              {
-                name: 'authorization-interface',
-                icon: 'smile',
                 path: '/list/authorization-interface',
-                component: './list/authorization-interface',
+                name: 'authorization-interface',
+                // component: './list/authorization-interface',
+                routes: [
+                  {
+                    path: '/list/authorization-interface',
+                    redirect: '/list/authorization-interface/queryFor-authorization',
+                  },
+                  {
+                    name: 'queryFor-authorization',
+                    icon: 'smile',
+                    path: '/list/authorization-interface/queryFor-authorization',
+                    component: './list/authorization-interface/queryFor-authorization',
+                  },
+                  {
+                    name: 'modifyUserAuthorization-status',
+                    icon: 'smile',
+                    path: '/list/authorization-interface/modifyUserAuthorization-status',
+                    component: './list/authorization-interface/modifyUserAuthorization-status',
+                  },
+                  {
+                    name: 'get-requestcode',
+                    icon: 'smile',
+                    path: '/list/authorization-interface/get-requestcode',
+                    component: './list/authorization-interface/get-requestcode',
+                  },
+                ],
               },
               {
                 name: 'authorization-interface',

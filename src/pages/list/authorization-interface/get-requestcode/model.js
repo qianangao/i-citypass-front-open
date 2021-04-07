@@ -1,7 +1,7 @@
 // import {} from './service';
 
 const Model = {
-  namespace: 'listAndQueryForAuthorization',
+  namespace: 'listAndGetRequestcode',
   state: {},
   effects: {},
   reducers: {},

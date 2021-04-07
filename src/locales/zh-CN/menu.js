@@ -29,6 +29,10 @@ export default {
   'menu.list.business-background.errorCode-set': '错误码集合',
   'menu.list.business-background.requestHeader-format': '请求头格式',
   'menu.list.authorization-interface': '授权接口',
+  'menu.list.authorization-interface.queryFor-authorization': '查询是否授权（不需要加密）',
+  'menu.list.authorization-interface.modifyUserAuthorization-status':
+    '修改用户授权状态（不需要加密）',
+  'menu.list.authorization-interface.get-requestcode': '获取requestCode',
   'menu.list.table-list.articles': '查询是否授权（不需要加密）',
   'menu.list.table-list.projects': '修改用户授权状态（不需要加密）',
   'menu.list.table-list.applications': '获取requestCode',

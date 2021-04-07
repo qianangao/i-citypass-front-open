@@ -1,7 +1,7 @@
 // import {} from './service';
 
 const Model = {
-  namespace: 'listAndQueryForAuthorization',
+  namespace: 'listAndModifyUserAuthorizationStatus',
   state: {},
   effects: {},
   reducers: {},
