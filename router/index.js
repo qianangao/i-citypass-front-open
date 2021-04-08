@@ -152,7 +152,7 @@ const router = [
                 ],
               },
               {
-                path: '/list/authorization-interface',
+                path: '/list/serviceSpecification',
                 name: 'authorization-interface',
                 component: './list/authorization-interface',
                 routes: [
@@ -258,25 +258,107 @@ const router = [
             // icon: 'profile',
             routes: [
               {
-                path: '/profile/jsbridge',
-                redirect: '/profile/jsbridge',
-              },
-              {
-                name: 'jsbridge',
                 path: '/profile',
-                component: './profile/jsbridge',
+                redirect: '/profile/serviceAccess',
               },
               {
-                name: 'basic',
-                icon: 'smile',
-                path: '/profile/basic',
-                component: './profile/basic',
+                path: '/profile/serviceAccess',
+                name: 'serviceAccess',
+                component: './profile/serviceAccess',
+                routes: [
+                  {
+                    path: '/profile/serviceAccess',
+                    redirect: '/profile/serviceAccess/call-originator',
+                  },
+                  {
+                    name: 'call-originator',
+                    path: '/profile/serviceAccess/call-originator',
+                    component: './profile/serviceAccess/call-originator',
+                  },
+                  {
+                    name: 'errorCode-set',
+                    path: '/profile/serviceAccess/errorCode-set',
+                    component: './profile/serviceAccess/errorCode-set',
+                  },
+                  {
+                    name: 'requestHeader-format',
+                    icon: 'smile',
+                    path: '/profile/serviceAccess/requestHeader-format',
+                    component: './profile/serviceAccess/requestHeader-format',
+                  },
+                ],
               },
               {
-                name: 'advanced',
-                icon: 'smile',
-                path: '/profile/advanced',
-                component: './profile/advanced',
+                path: '/profile/serviceSpecification',
+                name: 'serviceSpecification',
+                component: './profile/serviceSpecification',
+                routes: [
+                  {
+                    path: '/profile/serviceSpecification',
+                    redirect: '/profile/serviceSpecification/queryFor-authorization',
+                  },
+                  {
+                    name: 'queryFor-authorization',
+                    path: '/profile/serviceSpecification/queryFor-authorization',
+                    component: './profile/serviceSpecification/queryFor-authorization',
+                  },
+                  {
+                    name: 'modifyUserAuthorization-status',
+                    path: '/profile/serviceSpecification/modifyUserAuthorization-status',
+                    component: './profile/serviceSpecification/modifyUserAuthorization-status',
+                  },
+                ],
+              },
+              {
+                path: '/profile/interactiveinterface',
+                name: 'interactiveinterface',
+                component: './profile/interactiveinterface',
+                routes: [
+                  {
+                    path: '/profile/interactiveinterface',
+                    redirect: '/profile/interactiveinterface/get-requestcode',
+                  },
+                  {
+                    name: 'get-requestcode',
+                    path: '/profile/interactiveinterface/get-requestcode',
+                    component: './profile/interactiveinterface/get-requestcode',
+                  },
+                  {
+                    name: 'modifyUserAuthorization-status',
+                    path: '/profile/interactiveinterface/modifyUserAuthorization-status',
+                    component: './profile/interactiveinterface/modifyUserAuthorization-status',
+                  },
+                  {
+                    name: 'queryFor-authorization',
+                    path: '/profile/interactiveinterface/queryFor-authorization',
+                    component: './profile/interactiveinterface/queryFor-authorization',
+                  },
+                  {
+                    name: 'getCurrentOperate',
+                    path: '/profile/interactiveinterface/getCurrentOperate',
+                    component: './profile/interactiveinterface/getCurrentOperate',
+                  },
+                  {
+                    name: 'getDeviceInfor',
+                    path: '/profile/interactiveinterface/getDeviceInfor',
+                    component: './profile/interactiveinterface/getDeviceInfor',
+                  },
+                  {
+                    name: 'getPic',
+                    path: '/profile/interactiveinterface/getPic',
+                    component: './profile/interactiveinterface/getPic',
+                  },
+                  {
+                    name: 'setNavTitle',
+                    path: '/profile/interactiveinterface/setNavTitle',
+                    component: './profile/interactiveinterface/setNavTitle',
+                  },
+                  {
+                    name: 'setNavHidden',
+                    path: '/profile/interactiveinterface/setNavHidden',
+                    component: './profile/interactiveinterface/setNavHidden',
+                  },
+                ],
               },
             ],
           },
