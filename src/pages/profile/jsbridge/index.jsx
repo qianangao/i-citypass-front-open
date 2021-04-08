@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { Card, Table } from 'antd';
 import { connect } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
+import './style.less';
 
-// import styles from './style.less';
 const columns = [
   {
     title: '类型',
@@ -17,8 +17,8 @@ const columns = [
   },
   {
     title: '是否必须',
-    dataIndex: 'must',
-    key: 'must',
+    dataIndex: 'isNecessary',
+    key: 'isNecessary',
   },
   {
     title: '说明',
@@ -30,42 +30,72 @@ class Jsbridge extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      tableData: [
-        {
-          key: 0,
-          type: 'Authorization',
-          parameter: 'Bearer Your_Token',
-          must: '是',
-          explain: '智慧城市app的token',
-        },
-      ],
-      title:
-        '只能由业务方后台请求开放平台，因为存在服务器白名单校验限制，由H5直接请求的话，会回调错误。',
+      getRequestcode: {
+        isHeader: true,
+        requestMethod: 'Post',
+        requestUrl: 'http://ip:port/system/openPlatform/request/getRequestCode',
+        incomingParameters: [
+          {
+            key: 0,
+            type: 'Authorization',
+            parameter: 'Bearer Your_Token',
+            isNecessary: '是',
+            explain: '智慧城市app的token',
+          },
+        ],
+        // passInJSON: '',
+        returnInJson: `
+          {
+            "msg": "操作成功",
+            "code": "200",
+            "data": "Your_Request_Code"
+        }
+        `,
+      },
     };
   }
 
   render() {
-    const { tableData, title } = this.state;
+    const { getRequestcode } = this.state;
     return (
       <div>
         <PageContainer>
-          <Card bordered={false}>
-            <div>{title}</div>
-            <Table
-              columns={columns}
-              dataSource={tableData}
-              rowKey="key"
-              pagination={false}
-              scroll={{ y: 840 }}
-              bordered
-            />
+          <Card className="content-show" bordered={false}>
+            <h1 className="title">业务方后台调用接口</h1>
+            <h3 className="getCode">获取requestCode</h3>
+            <p className="show-title">请求地址</p>
+            <Card className="show-content" bordered={false}>
+              <div className="show-url">
+                {getRequestcode.requestMethod}地址：
+                <span className="show-red">{getRequestcode.requestUrl}</span>
+              </div>
+            </Card>
+            <p className="show-title">
+              {getRequestcode.isHeader ? '请求头参数 token' : '输入参数'}
+            </p>
+            <Card className="show-content" bordered={false}>
+              <Table
+                columns={columns}
+                dataSource={getRequestcode.incomingParameters}
+                rowKey="key"
+                pagination={false}
+                bordered
+              ></Table>
+            </Card>
+            {/* <p className="show-title">3.传入json示例</p>
+          <Card className="show-content" bordered={false}>
+            <div className="show-json">{getRequestcode.passInJSON}</div>
+          </Card> */}
+            <p className="show-title">返回json示例</p>
+            <Card className="show-content" bordered={false}>
+              <div className="show-json">{getRequestcode.returnInJson}</div>
+            </Card>
           </Card>
         </PageContainer>
       </div>
     );
   }
 }
-
 export default connect(({ jsbridgeSpace, loading }) => ({
   jsbridgeSpace,
   loading: loading.models.jsbridgeSpace,
