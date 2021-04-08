@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Card } from 'antd';
 import { connect } from 'umi';
-import CommonComponent from '../components/Common';
+import CommonComponent from '@/components/DocumentComponent/Common';
 
 class GetAccessToken extends PureComponent {
   constructor(props) {
@@ -9,6 +9,8 @@ class GetAccessToken extends PureComponent {
     this.state = {
       getAccessToken: {
         isHeader: false,
+        isRules: false,
+        rules: '',
         requestMethod: 'Post',
         requestUrl: 'http://ip:port/system/openPlatform/accessToken/getAccessToken',
         incomingParameters: [
@@ -50,13 +52,13 @@ class GetAccessToken extends PureComponent {
           },
         ],
         passInJSON: `
-        {
-          "appId": "YOUR_APP_ID",
-          "appSecret": "YOUR_APP_SECRET",
-          "timestamp": "1536560712",
-          "randomSeries": "8885522200",
-          "cipherText": "YOUR_CIPHER_TEXT"
-        }
+        <div class="line-first">{</div>
+          <div class="line-indent">"appId": "YOUR_APP_ID",</div>
+          <div class="line-indent">"appSecret": "YOUR_APP_SECRET",</div>
+          <div class="line-indent">"timestamp": "1536560712",</div>
+          <div class="line-indent">"randomSeries": "8885522200",</div>
+          <div class="line-indent">"cipherText": "YOUR_CIPHER_TEXT"</div>
+          <div class="line-first">}</div>
         `,
         outputParameters: [
           {
@@ -96,41 +98,41 @@ class GetAccessToken extends PureComponent {
           },
         ],
         returnInJson: `
-        {
-          "msg": "操作成功",
-          "code": "200",
-          "data": {
-            "accessToken": "YOUR_ACCESS_TOKEN",
-            "expiresIn": 300,
-            "refreshToken": "YOUR_REFRESH_TOKEN"
-          }
-        }
+        <div class="line-first">{</div>
+          <div class="line-indent">"msg": "操作成功",</div>
+          <div class="line-indent">"code": "200",</div>
+          <div class="line-indent">"data": {</div>
+            <div class="line-indent-two">"accessToken": "YOUR_ACCESS_TOKEN",</div>
+            <div class="line-indent-two">"expiresIn": 300,</div>
+            <div class="line-indent-two">"refreshToken": "YOUR_REFRESH_TOKEN"</div>
+          <div class="line-indent">}</div>
+        <div class="line-first">}</div>
         `,
         javaCode: `
-        import org.apache.commons.codec.digest.DigestUtils;
+        <div class="line-first">import org.apache.commons.codec.digest.DigestUtils;</div>
 
-        public class GetCipherTextMain {
+        <div class="line-first">public class GetCipherTextMain {</div>
         
-            public static void main(String[] args) {
-                String appId = "XXX";
-                String appSecret = "XXX";
-                String timestamp = "1536560712";
-                String randomSeries = "8885522200";
+          <div class="line-indent">public static void main(String[] args) {</div>
+            <div class="line-indent-two">String appId = "XXX";</div>
+            <div class="line-indent-two">String appSecret = "XXX";</div>
+            <div class="line-indent-two">String timestamp = "1536560712";</div>
+            <div class="line-indent-two">String randomSeries = "8885522200";</div>
         
-                StringBuffer buffer = new StringBuffer();
-                buffer.append("appId")
-                      .append(appId)
-                      .append("appSecret")
-                      .append(appSecret)
-                      .append("timestamp")
-                      .append(timestamp)
-                      .append("randomSeries")
-                      .append(randomSeries);
-                String cipherText = DigestUtils.md5Hex(buffer.toString());
-                System.out.println(cipherText);
-            }
+            <div class="line-indent-two">StringBuffer buffer = new StringBuffer();</div>
+            <div class="line-indent-two">buffer.append("appId")</div>
+              <div class="line-indent-three">.append(appId)</div>
+              <div class="line-indent-three">.append("appSecret")</div>
+              <div class="line-indent-three">.append(appSecret)</div>
+              <div class="line-indent-three">.append("timestamp")</div>
+              <div class="line-indent-three">.append(timestamp)</div>
+              <div class="line-indent-three">.append("randomSeries")</div>
+              <div class="line-indent-three">.append(randomSeries);</div>
+            <div class="line-indent-two">String cipherText = DigestUtils.md5Hex(buffer.toString());</div>
+            <div class="line-indent-two">System.out.println(cipherText);</div>
+          <div class="line-indent">}</div>
         
-        }
+        <div class="line-first">}</div>
         `,
       },
     };
