@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Card } from 'antd';
 import { connect } from 'umi';
-import CommonComponent from '../../oAuth/components/Common';
+import CommonComponent from '@/components/DocumentComponent/Common';
 
 class GetUserInfo extends PureComponent {
   constructor(props) {
@@ -9,6 +9,8 @@ class GetUserInfo extends PureComponent {
     this.state = {
       getUserInfo: {
         isHeader: false,
+        isRules: false,
+        rules: '',
         requestMethod: 'Post',
         requestUrl: 'http://ip:port/system/appUser/userInfo/getUserInfo',
         incomingParameters: [
@@ -21,7 +23,9 @@ class GetUserInfo extends PureComponent {
           },
         ],
         passInJSON: `
-        { "userAccessToken": "YOUR_USER_ACCESS_TOKEN" }
+        <div class="line-first">{</div>
+          <div class="line-indent">"userAccessToken": "YOUR_USER_ACCESS_TOKEN"</div> 
+        <div class="line-first">}</div>
         `,
         outputParameters: [
           {
@@ -124,26 +128,27 @@ class GetUserInfo extends PureComponent {
           },
         ],
         returnInJson: `
-        {
-          "msg": "操作成功",
-          "code": "200",
-          "data": {
-            "userId":1 ,
-            "userName":"",
-            "nickName":"",
-            "phone":"",
-            "sex":"",
-            "avatar":"",
-            "status":"",
-            "isDel":"",
-            "isIdentity":"",
-            "identityNum":"",
-            "identityType":""
-          }
-        }
+        <div class="line-first">{</div>
+          <div class="line-indent">"msg": "操作成功",</div>
+          <div class="line-indent">"code": "200",</div>
+          <div class="line-indent">"data": {</div>
+            <div class="line-indent-two">"userId":1 ,</div>
+            <div class="line-indent-two">"userName":"",</div>
+            <div class="line-indent-two">"nickName":"",</div>
+            <div class="line-indent-two">"phone":"",</div>
+            <div class="line-indent-two">"sex":"",</div>
+            <div class="line-indent-two">"avatar":"",</div>
+            <div class="line-indent-two">"status":"",</div>
+            <div class="line-indent-two">"isDel":"",</div>
+            <div class="line-indent-two">"isIdentity":"",</div>
+            <div class="line-indent-two">"identityNum":"",</div>
+            <div class="line-indent-two">"identityType":""</div>
+          <div class="line-indent">}</div>
+        <div class="line-first">}</div>
         
-        返回json经过加密，请先AES解密，再SM4解密。
+        <div class="line-first">返回json经过加密，请先AES解密，再SM4解密。</div>
         `,
+        javaCode: '',
       },
     };
   }

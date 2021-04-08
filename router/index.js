@@ -238,18 +238,18 @@ const router = [
                   },
                 ],
               },
-              {
-                name: 'authorization-interface',
-                icon: 'smile',
-                path: '/list/basic-list',
-                component: './list/basic-list',
-              },
-              {
-                name: 'card-list',
-                icon: 'smile',
-                path: '/list/card-list',
-                component: './list/card-list',
-              },
+              // {
+              //   name: 'authorization-interface',
+              //   icon: 'smile',
+              //   path: '/list/basic-list',
+              //   component: './list/basic-list',
+              // },
+              // {
+              //   name: 'card-list',
+              //   icon: 'smile',
+              //   path: '/list/card-list',
+              //   component: './list/card-list',
+              // },
             ],
           },
           {

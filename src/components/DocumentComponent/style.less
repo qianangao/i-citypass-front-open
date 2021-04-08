@@ -2,11 +2,24 @@
 .content-show {
   width: 100%;
   .show-title {
+    position: relative;
     margin-bottom: 0;
+    padding-left: 8px;
     color: #404040;
     font-weight: bold;
     font-size: 16px;
     letter-spacing: 0.008em;
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      margin-top: -2px;
+      background-color: #404040;
+      border-radius: 100%;
+      content: '';
+    }
   }
   .show-content {
     color: #404040;
@@ -24,6 +37,15 @@
       padding: 24px 16px;
       overflow: auto;
       background: #f9f9f9;
+      .line-indent {
+        text-indent: 8px;
+      }
+      .line-indent-two {
+        text-indent: 16px;
+      }
+      .line-indent-three {
+        text-indent: 24px;
+      }
     }
   }
 }

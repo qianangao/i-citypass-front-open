@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Card } from 'antd';
 import { connect } from 'umi';
-import CommonComponent from '../components/Common';
+import CommonComponent from '@/components/DocumentComponent/Common';
 
 class GetRequestcode extends PureComponent {
   constructor(props) {
@@ -9,6 +9,8 @@ class GetRequestcode extends PureComponent {
     this.state = {
       getRequestcode: {
         isHeader: true,
+        isRules: false,
+        rules: '',
         requestMethod: 'Post',
         requestUrl: 'http://ip:port/system/openPlatform/request/getRequestCode',
         incomingParameters: [
@@ -21,13 +23,15 @@ class GetRequestcode extends PureComponent {
           },
         ],
         passInJSON: '',
+        outputParameters: [],
         returnInJson: `
-          {
-            "msg": "操作成功",
-            "code": "200",
-            "data": "Your_Request_Code"
-        }
+          <div class="line-first">{</div>
+            <div class="line-indent">"msg": "操作成功",</div>
+            <div class="line-indent">"code": "200",</div>
+            <div class="line-indent">"data": "Your_Request_Code"</div>
+          <div class="line-first">}</div>
         `,
+        javaCode: '',
       },
     };
   }
