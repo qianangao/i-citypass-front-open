@@ -258,8 +258,13 @@ const router = [
             // icon: 'profile',
             routes: [
               {
+                path: '/profile/jsbridge',
+                redirect: '/profile/jsbridge',
+              },
+              {
+                name: 'jsbridge',
                 path: '/profile',
-                redirect: '/profile/basic',
+                component: './profile/jsbridge',
               },
               {
                 name: 'basic',
