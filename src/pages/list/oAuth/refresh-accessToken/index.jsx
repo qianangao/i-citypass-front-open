@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Card } from 'antd';
 import { connect } from 'umi';
-import CommonComponent from '../components/Common';
+import CommonComponent from '@/components/DocumentComponent/Common';
 
 class RefreshAccessToken extends PureComponent {
   constructor(props) {
@@ -9,6 +9,8 @@ class RefreshAccessToken extends PureComponent {
     this.state = {
       refreshAccessToken: {
         isHeader: false,
+        isRules: false,
+        rules: '',
         requestMethod: 'Post',
         requestUrl: 'http://ip:port/system/openPlatform/accessToken/refreshAccessToken',
         incomingParameters: [
@@ -35,11 +37,11 @@ class RefreshAccessToken extends PureComponent {
           },
         ],
         passInJSON: `
-        {
-          "appId": "YOUR_APP_ID",
-          "appSecret": "YOUR_APP_SECRET",
-          "refreshToken": "YOUR_REFRESH_TOKEN"
-        }
+        <div class="line-first">{</div>
+          <div class="line-indent">"appId": "YOUR_APP_ID",</div>
+          <div class="line-indent">"appSecret": "YOUR_APP_SECRET",</div>
+          <div class="line-indent">"refreshToken": "YOUR_REFRESH_TOKEN"</div>
+        <div class="line-first">}</div>
         `,
         outputParameters: [
           {
@@ -79,16 +81,17 @@ class RefreshAccessToken extends PureComponent {
           },
         ],
         returnInJson: `
-        {
-          "msg": "操作成功",
-          "code": "200",
-          "data": {
-            "accessToken": "YOUR_ACCESS_TOKEN",
-            "expiresIn": 300,
-            "refreshToken": "YOUR_REFRESH_TOKEN"
-          }
-        }
+        <div class="line-first">{</div>
+          <div class="line-indent">"msg": "操作成功",</div>
+          <div class="line-indent">"code": "200",</div>
+          <div class="line-indent">"data": {</div>
+            <div class="line-indent-two">"accessToken": "YOUR_ACCESS_TOKEN",</div>
+            <div class="line-indent-two">"expiresIn": 300,</div>
+            <div class="line-indent-two">"refreshToken": "YOUR_REFRESH_TOKEN"</div>
+          <div class="line-indent">}</div>
+        <div class="line-first">}</div>
         `,
+        javaCode: '',
       },
     };
   }

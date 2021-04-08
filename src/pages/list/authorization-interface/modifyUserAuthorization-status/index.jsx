@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Card } from 'antd';
 import { connect } from 'umi';
-import CommonComponent from '../components/Common';
+import CommonComponent from '@/components/DocumentComponent/Common';
 
 class ModifyUserAuthorizationStatus extends PureComponent {
   constructor(props) {
@@ -9,6 +9,8 @@ class ModifyUserAuthorizationStatus extends PureComponent {
     this.state = {
       modifyUserAuthorizationStatus: {
         isHeader: false,
+        isRules: false,
+        rules: '',
         requestMethod: 'Post',
         requestUrl: 'http://ip:port/system/app/authorize/update',
         incomingParameters: [
@@ -28,18 +30,20 @@ class ModifyUserAuthorizationStatus extends PureComponent {
           },
         ],
         passInJSON: `
-        {
-          "lightId": 1,
-          "ifAuthorize": "0"
-        }
+        <div class="line-first">{</div>
+          <div class="line-indent">"lightId": 1,</div>
+          <div class="line-indent">"ifAuthorize": "0"</div>
+        <div class="line-first">}</div>
         `,
+        outputParameters: [],
         returnInJson: `
-          {
-            "msg": "操作成功",
-            "code": "200",
-            "data": {}
-        }
+          <div class="line-first">{</div>
+            <div class="line-indent">"msg": "操作成功",</div>
+            <div class="line-indent">"code": "200",</div>
+            <div class="line-indent">"data": {}</div>
+          <div class="line-first">}</div>
         `,
+        javaCode: '',
       },
     };
   }

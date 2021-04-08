@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Card } from 'antd';
 import { connect } from 'umi';
-import CommonComponent from '../components/Common';
+import CommonComponent from '@/components/DocumentComponent/Common';
 
 class CheckAccessToken extends PureComponent {
   constructor(props) {
@@ -9,6 +9,8 @@ class CheckAccessToken extends PureComponent {
     this.state = {
       checkAccessToken: {
         isHeader: false,
+        isRules: false,
+        rules: '',
         requestMethod: 'Post',
         requestUrl: 'http://ip:port/system/openPlatform/accessToken/checkAccessToken',
         incomingParameters: [
@@ -35,11 +37,11 @@ class CheckAccessToken extends PureComponent {
           },
         ],
         passInJSON: `
-        {
-          "appId": "YOUR_APP_ID",
-          "appSecret": "YOUR_APP_SECRET",
-          "accessToken": "YOUR_ACCESS_TOKEN"
-        }
+        <div class="line-first">{</div>
+          <div class="line-indent">"appId": "YOUR_APP_ID",</div>
+          <div class="line-indent">"appSecret": "YOUR_APP_SECRET",</div>
+          <div class="line-indent">"accessToken": "YOUR_ACCESS_TOKEN"</div>
+        <div class="line-first">}</div>
         `,
         outputParameters: [
           {
@@ -65,8 +67,15 @@ class CheckAccessToken extends PureComponent {
           },
         ],
         returnInJson: `
-        { "msg": "操作成功", "code": "200", "data": { "verifyResult": true } }
+        <div class="line-first">{</div>
+          <div class="line-indent">"msg": "操作成功", </div>
+          <div class="line-indent">"code": "200",</div> 
+          <div class="line-indent">"data": {</div> 
+            <div class="line-indent-two">"verifyResult": true </div>
+          <div class="line-indent">}</div>
+        <div class="line-first">}</div>
         `,
+        javaCode: '',
       },
     };
   }

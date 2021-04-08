@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Card } from 'antd';
 import { connect } from 'umi';
-import CommonComponent from '../components/Common';
+import CommonComponent from '@/components/DocumentComponent/Common';
 
 class QueryForAuthorization extends PureComponent {
   constructor(props) {
@@ -9,6 +9,8 @@ class QueryForAuthorization extends PureComponent {
     this.state = {
       queryForAuthorization: {
         isHeader: false,
+        isRules: false,
+        rules: '',
         requestMethod: 'Get',
         requestUrl: 'http://ip:port/system/app/authorize/whether',
         incomingParameters: [
@@ -21,22 +23,24 @@ class QueryForAuthorization extends PureComponent {
           },
         ],
         passInJSON: `
-          {
-            "lightId": "1"
-          }
+          <div class="line-first">{</div>
+            <div class="line-indent">"lightId": "1"</div>
+          <div class="line-first">}</div>
         `,
+        outputParameters: [],
         returnInJson: `
-          {
-            "msg": "操作成功",
-            "code": "200",
-            "data": {
-              "ifAuthorize": 0,  //是否授权（0-是 1-否）
-              "icon": "xxxxxx",	 //icon
-              "name": "xxxxx",		//轻应用名称
-              "inUrl": "xxxx"		//轻应用地址
-            }
-        }
+          <div class="line-first">{</div>
+            <div class="line-indent">"msg": "操作成功",</div>
+            <div class="line-indent">"code": "200",</div>
+            <div class="line-indent">"data": {</div>
+              <div class="line-indent-two">"ifAuthorize": 0,  //是否授权（0-是 1-否）</div>
+              <div class="line-indent-two">"icon": "xxxxxx",	 //icon</div>
+              <div class="line-indent-two">"name": "xxxxx",		//轻应用名称</div>
+              <div class="line-indent-two">"inUrl": "xxxx"		//轻应用地址</div>
+            <div class="line-indent">}</div>
+          <div class="line-first">}</div>
         `,
+        javaCode: '',
       },
     };
   }
