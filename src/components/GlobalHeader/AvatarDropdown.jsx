@@ -1,11 +1,30 @@
 import { LogoutOutlined } from '@ant-design/icons';
-import { Avatar, Menu, Spin } from 'antd';
+// import { Avatar, Menu, Spin } from 'antd';
+import { Avatar, Menu } from 'antd';
 import React from 'react';
 import { history, connect } from 'umi';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
+import LoginPage from './Login/Login';
+import LoginIcon from '@/assets/login.png';
 
 class AvatarDropdown extends React.Component {
+  state = {
+    modalVisible: false,
+  };
+
+  goLogin = () => {
+    this.setState({
+      modalVisible: true,
+    });
+  };
+
+  submitCancel = (flag) => {
+    this.setState({
+      modalVisible: flag,
+    });
+  };
+
   onMenuClick = (event) => {
     const { key } = event;
     if (key === 'logout') {
@@ -17,7 +36,6 @@ class AvatarDropdown extends React.Component {
       }
       return;
     }
-
     history.push(`/account/${key}`);
   };
 
@@ -29,6 +47,7 @@ class AvatarDropdown extends React.Component {
       },
       menu,
     } = this.props;
+    const { modalVisible } = this.state;
     const menuHeaderDropdown = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
         {/* {menu && (
@@ -50,7 +69,7 @@ class AvatarDropdown extends React.Component {
         </Menu.Item>
       </Menu>
     );
-    return currentUser && currentUser.name ? (
+    return currentUser && !currentUser.name ? (
       <HeaderDropdown overlay={menuHeaderDropdown}>
         <span className={`${styles.action} ${styles.account}`}>
           <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
@@ -58,15 +77,23 @@ class AvatarDropdown extends React.Component {
         </span>
       </HeaderDropdown>
     ) : (
-      <span className={`${styles.action} ${styles.account}`}>
-        <Spin
-          size="small"
-          style={{
-            marginLeft: 8,
-            marginRight: 8,
-          }}
-        />
-      </span>
+      // <span className={`${styles.action} ${styles.account}`}>
+      //   <Spin
+      //     size="small"
+      //     style={{
+      //       marginLeft: 8,
+      //       marginRight: 8,
+      //     }}
+      //   />
+      // </span>
+      <div>
+        <span className={`${styles.action} ${styles.account} `}>
+          <div className={styles.loginStyle} onClick={this.goLogin}>
+            <img src={LoginIcon} className={styles.loginIcon} alt="" /> 登录
+          </div>
+        </span>
+        <LoginPage modalVisible={modalVisible} submitCancel={this.submitCancel} />
+      </div>
     );
   }
 }

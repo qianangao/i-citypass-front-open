@@ -17,7 +17,6 @@ const GlobalHeaderRight = (props) => {
   if (theme === 'dark' && layout === 'top') {
     className = `${styles.right}  ${styles.dark}`;
   }
-
   return (
     <div className={className}>
       <Avatar menu />

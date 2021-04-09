@@ -1,0 +1,49 @@
+.modalStyle {
+  .ant-modal-header {
+    .ant-modal-title {
+      position: relative;
+      padding-left: 16px;
+      color: #333;
+      font-weight: 800;
+      font-size: 20px;
+      line-height: 20px;
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 8px;
+        height: 30px;
+        margin-top: -15px;
+        background: #27a5f9;
+        content: '';
+      }
+    }
+  }
+  .ant-modal-body {
+    padding: 8px;
+    .codeImgContent {
+      height: 40px;
+      .codeImg {
+        width: 100px;
+        height: 40px;
+      }
+    }
+    .linkStyle {
+      color: #26a5f9;
+      cursor: pointer;
+    }
+    .ant-input {
+      height: 40px;
+      border-radius: 4px;
+    }
+    .submitBtnContent {
+      margin: 0 auto;
+      text-align: center;
+      .submitBtn {
+        width: 240px;
+        height: 40px;
+        border-radius: 4px;
+      }
+    }
+  }
+}
