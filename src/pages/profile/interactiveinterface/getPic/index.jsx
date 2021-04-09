@@ -1,92 +1,99 @@
+/* eslint-disable */
 import React, { PureComponent } from 'react';
-import { Card, Table } from 'antd';
+import { Card } from 'antd';
+import CommonComponent from '@/components/JSBridgeComponent/Common';
 // import { connect } from 'umi';
-// import CommonComponent from '../components/Common';
-const columns = [
-  {
-    title: '类型',
-    dataIndex: 'type',
-    key: 'type',
-  },
-  {
-    title: '参数',
-    dataIndex: 'parameter',
-    key: 'parameter',
-  },
-  {
-    title: '是否必须',
-    dataIndex: 'isNecessary',
-    key: 'isNecessary',
-  },
-  {
-    title: '说明',
-    dataIndex: 'explain',
-    key: 'explain',
-  },
-];
+
 class GetRequestcode extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      getRequestcode: {
-        isHeader: true,
-        requestMethod: 'Post',
-        requestUrl: 'http://ip:port/system/openPlatform/request/getRequestCode',
+      queryForAuthorization: {
+        isHeader: false,
+        isRules: false,
+        rules: '',
+        title: 'H5端从原生获取图片，可以拍照或从相册中选择，将图片数据转成base64的格式返回',
+        requestName: 'getPicOrAlbum',
+        requestUrl: '返回码，成功（200），失败（500）',
+        outParams: 'object  response',
+        InParams: 'Object data',
+        outputParameters: [
+          {
+            key: 0,
+            type: 'Number',
+            parameter: 'code',
+            isNecessary: '是',
+            explain: '返回码，成功（200），失败（500）',
+          },
+          {
+            key: 1,
+            type: 'String',
+            parameter: 'msg',
+            isNecessary: '是',
+            explain: '失败：获取信息异常',
+          },
+          {
+            key: 2,
+            type: 'Object',
+            parameter: 'data',
+            isNecessary: '是',
+            explain: '返回数据',
+          },
+        ],
         incomingParameters: [
           {
             key: 0,
-            type: 'Authorization',
-            parameter: 'Bearer Your_Token',
+            type: 'String',
+            parameter: 'content',
             isNecessary: '是',
-            explain: '智慧城市app的token',
+            explain: '图片内容，转成base64格式',
+          },
+          {
+            key: 1,
+            type: 'String',
+            parameter: 'fileName',
+            isNecessary: '是',
+            explain: '图片名称，获取当前时间生成的',
+          },
+          {
+            key: 2,
+            type: 'String',
+            parameter: 'fileext',
+            isNecessary: '是',
+            explain: '',
           },
         ],
-        passInJSON: '',
+        passInJSON: `
+        <div class="line-first">{</div>
+          <div class="line-indent">"window.WebViewJavascriptBridge.callHandler('getPicOrAlbum', null, "</div>
+          <div class="line-indent"> "function (response) {"</div>
+            <div class="line-indent-two">$('#log').text('getPicOrAlbum');</div>
+            <div class="line-indent-two">showResponse(response);</div>
+            <div class="line-indent-two">});</div>
+          <div class="line-first">}</div>
+
+        `,
         returnInJson: `
-          {
-            "msg": "操作成功",
-            "code": "200",
-            "data": "Your_Request_Code"
-        }
+          <div class="line-first">{</div>
+            <div class="line-indent">“msg”:”success”,</div>
+            <div class="line-indent">“code”:”200”,</div>
+            <div class="line-indent">“data”: {</div>
+              <div class="line-indent-two">“content”:”data:image\/png;base64,\/9j\/4AAQSkZJRgABAQA...”,</div>
+              <div class="line-indent-two">“fileName”:”20210309094021.png”,</div>
+              <div class="line-indent-two">“fileext”:””</div>
+              <div class="line-indent-two">}</div>
+          <div class="line-first">}</div>
         `,
       },
     };
   }
 
   render() {
-    const { getRequestcode } = this.state;
+    const { queryForAuthorization } = this.state;
     return (
       <div>
         <Card bordered={false}>
-          <Card className="content-show" bordered={false}>
-            <p className="show-title">1.请求地址</p>
-            <Card className="show-content" bordered={false}>
-              <div className="show-url">
-                {getRequestcode.requestMethod}地址：
-                <span className="show-red">{getRequestcode.requestUrl}</span>
-              </div>
-            </Card>
-            <p className="show-title">
-              2.{getRequestcode.isHeader ? '请求头参数 token' : '输入参数'}
-            </p>
-            <Card className="show-content" bordered={false}>
-              <Table
-                columns={columns}
-                dataSource={getRequestcode.incomingParameters}
-                rowKey="key"
-                pagination={false}
-                bordered
-              ></Table>
-            </Card>
-            <p className="show-title">3.传入json示例</p>
-            <Card className="show-content" bordered={false}>
-              <div className="show-json">{getRequestcode.passInJSON}</div>
-            </Card>
-            <p className="show-title">4.返回json示例</p>
-            <Card className="show-content" bordered={false}>
-              <div className="show-json">{getRequestcode.returnInJson}</div>
-            </Card>
-          </Card>
+          <CommonComponent tableData={queryForAuthorization} />
         </Card>
       </div>
     );

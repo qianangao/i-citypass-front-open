@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card } from 'antd';
 // import { connect } from 'umi';
-// import CommonComponent from '../components/Common';
 import './style.less';
 
 class QueryForAuthorization extends PureComponent {
@@ -30,6 +29,10 @@ class QueryForAuthorization extends PureComponent {
           <p className="show-title">{queryForAuthorization.requestMethod}</p>
           <p className="show-title">{queryForAuthorization.requestUrl}</p>
           <p className="show-title">{queryForAuthorization.requtUrl}</p>
+
+          <div className="background">
+            {/* <img src="../../../../assets/JSBridge/colorStyle.png" alt=""/> */}
+          </div>
         </Card>
       </div>
     );
