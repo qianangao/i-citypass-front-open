@@ -55,7 +55,7 @@ export default {
   'menu.profile.interactiveinterface': 'H5与城市通APP交互接口',
   'menu.profile.interactiveinterface.queryFor-authorization': '获取定位信息',
   'menu.profile.interactiveinterface.modifyUserAuthorization-status': '获取版本号',
-  'menu.profile.serviceSpecification.get-requestcode': '获取requstCode',
+  'menu.profile.interactiveinterface.get-requestcode': '获取requstCode',
   'menu.profile.interactiveinterface.getCurrentOperate': '获取当前操作系统',
   'menu.profile.interactiveinterface.getDeviceInfor': '获取设备信息',
   'menu.profile.interactiveinterface.getPic': '获取图片',

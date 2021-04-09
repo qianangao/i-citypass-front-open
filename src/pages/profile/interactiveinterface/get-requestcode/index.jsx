@@ -30,8 +30,6 @@ class GetRequestcode extends PureComponent {
     super(props);
     this.state = {
       getRequestcode: {
-        isHeader: true,
-        requestMethod: 'Post',
         requestName: 'getRequstCode',
         requestobject: 'object',
         returnParam: 'data',
@@ -73,14 +71,16 @@ class GetRequestcode extends PureComponent {
           window.WebViewJavascriptBridge.callHandler('getRequstCode',null, function (response) {
             $('#log').text('requstCode');
             showResponse(response);
-        });
+          }); 
         }
         `,
         returnInJson: `
           {
-            "msg": "操作成功",
-            "code": "200",
-            "data": "Your_Request_Code"
+            “msg”:”success”,
+            “code”:”200”,
+            “data”: {
+            “requstCode”:”a48fcb7c4ca0a1dded0ccd1227801c0d5d9c48b9e85417b2f55da4902233f260”
+          }
         }
         `,
       },

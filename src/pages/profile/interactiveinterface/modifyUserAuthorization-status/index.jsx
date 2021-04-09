@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, Table } from 'antd';
+import './style.less';
 // import { connect } from 'umi';
 // import CommonComponent from '../components/Common';
 const columns = [
@@ -29,37 +30,56 @@ class ModifyUserAuthorizationStatus extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      modifyUserAuthorizationStatus: {
-        isHeader: false,
-        requestMethod: 'Post',
-        requestUrl: 'http://ip:port/system/app/authorize/update',
+      getRequestcode: {
+        requestName: 'getAppVersion',
+        requestobject: 'object',
+        returnParam: 'data',
+        requestres: 'response',
         incomingParameters: [
           {
             key: 0,
-            type: 'Long',
-            parameter: 'lightId',
+            type: 'Number',
+            parameter: 'code',
             isNecessary: '是',
-            explain: '轻应用id',
+            explain: '返回码，成功（200），失败（500）',
           },
           {
             key: 1,
             type: 'String',
-            parameter: 'ifAuthorize',
+            parameter: 'msg',
             isNecessary: '是',
-            explain: '是否授权（0-是 1-否）',
+            explain: '失败：获取信息异常',
+          },
+          {
+            key: 2,
+            type: 'Object',
+            parameter: 'data',
+            isNecessary: '是',
+            explain: '返回数据',
+          },
+        ],
+        returnKey: [
+          {
+            key: 0,
+            type: 'String',
+            parameter: 'version',
+            isNecessary: '是',
+            explain: '版本号',
           },
         ],
         passInJSON: `
         {
-          "lightId": 1,
-          "ifAuthorize": "0"
+          window.WebViewJavascriptBridge.callHandler('getRequstCode',null, function (response) {
+            $('#log').text('requstCode');
+            showResponse(response);
+        });
         }
         `,
         returnInJson: `
           {
             "msg": "操作成功",
             "code": "200",
-            "data": {}
+            "data": "Your_Request_Code"
         }
         `,
       },
@@ -67,42 +87,61 @@ class ModifyUserAuthorizationStatus extends PureComponent {
   }
 
   render() {
-    const { modifyUserAuthorizationStatus } = this.state;
+    const { getRequestcode } = this.state;
     return (
       <div>
-        <div>
-          <Card bordered={false}>
-            <Card className="content-show" bordered={false}>
-              <p className="show-title">1.请求地址</p>
-              <Card className="show-content" bordered={false}>
-                <div className="show-url">
-                  {modifyUserAuthorizationStatus.requestMethod}地址：
-                  <span className="show-red">{modifyUserAuthorizationStatus.requestUrl}</span>
-                </div>
-              </Card>
-              <p className="show-title">
-                2.{modifyUserAuthorizationStatus.isHeader ? '请求头参数 token' : '输入参数'}
-              </p>
-              <Card className="show-content" bordered={false}>
-                <Table
-                  columns={columns}
-                  dataSource={modifyUserAuthorizationStatus.incomingParameters}
-                  rowKey="key"
-                  pagination={false}
-                  bordered
-                ></Table>
-              </Card>
-              <p className="show-title">3.传入json示例</p>
-              <Card className="show-content" bordered={false}>
-                <div className="show-json">{modifyUserAuthorizationStatus.passInJSON}</div>
-              </Card>
-              <p className="show-title">4.返回json示例</p>
-              <Card className="show-content" bordered={false}>
-                <div className="show-json">{modifyUserAuthorizationStatus.returnInJson}</div>
-              </Card>
+        <Card bordered={false}>
+          <Card className="content-show" bordered={false}>
+            <p className="show-title">H5端从原生获取当前app的版本号</p>
+            <Card className="show-content" bordered={false}>
+              <div className="show-url">
+                方法名：
+                <span className="show-red">{getRequestcode.requestName}</span>
+              </div>
+            </Card>
+            <Card className="show-content" bordered={false}>
+              <div className="show-url">
+                输出参数：
+                <span className="show-red">{getRequestcode.requestobject}</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span className="show-red">{getRequestcode.requestres}</span>
+              </div>
+            </Card>
+            <Card className="show-content" bordered={false}>
+              <Table
+                columns={columns}
+                dataSource={getRequestcode.incomingParameters}
+                rowKey="key"
+                pagination={false}
+                bordered
+              ></Table>
+            </Card>
+            <Card className="show-content" bordered={false}>
+              <div className="show-url">
+                返回参数：
+                <span className="show-red">{getRequestcode.returnParam}</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </div>
+            </Card>
+            <Card className="show-content" bordered={false}>
+              <Table
+                columns={columns}
+                dataSource={getRequestcode.returnKey}
+                rowKey="key"
+                pagination={false}
+                bordered
+              ></Table>
+            </Card>
+            <p className="show-title">调用示例（H5端）</p>
+            <Card className="show-content" bordered={false}>
+              <div className="show-json">{getRequestcode.passInJSON}</div>
+            </Card>
+            <p className="show-title">返回的json示例</p>
+            <Card className="show-content" bordered={false}>
+              <div className="show-json">{getRequestcode.returnInJson}</div>
             </Card>
           </Card>
-        </div>
+        </Card>
       </div>
     );
   }
