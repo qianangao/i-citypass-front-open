@@ -339,6 +339,20 @@ const router = [
             ],
           },
           {
+            path: '/lightApplication',
+            name: 'lightApplication',
+            routes: [
+              {
+                path: '/lightApplication/light',
+                redirect: '/lightApplication/light',
+              },
+              {
+                component: './lightApplication/light',
+              },
+            ],
+          },
+
+          {
             component: '404',
           },
         ],
