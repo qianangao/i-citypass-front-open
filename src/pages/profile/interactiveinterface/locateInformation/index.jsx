@@ -56,8 +56,8 @@ class QueryForAuthorization extends PureComponent {
         ],
         passInJSON: `
         <div class="line-first">{</div>
-          <div class="line-indent">"window.WebViewJavascriptBridge.callHandler('getLocation', null, "</div>
-          <div class="line-indent"> "function (response) {"</div>
+          <div class="line-indent">window.WebViewJavascriptBridge.callHandler('getLocation', null, </div>
+          <div class="line-indent"> function (response) {</div>
             <div class="line-indent-two">$('#log').text('location');</div>
             <div class="line-indent-two">showResponse(response);</div>
             <div class="line-indent-two">});</div>

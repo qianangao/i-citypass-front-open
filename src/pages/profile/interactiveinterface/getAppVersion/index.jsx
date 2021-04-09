@@ -50,8 +50,8 @@ class ModifyUserAuthorizationStatus extends PureComponent {
         ],
         passInJSON: `
         <div class="line-first">{</div>
-          <div class="line-indent">"window.WebViewJavascriptBridge.callHandler('getAppVersion', null, "</div>
-          <div class="line-indent"> "function (response) {"</div>
+          <div class="line-indent">window.WebViewJavascriptBridge.callHandler('getAppVersion', null, </div>
+          <div class="line-indent"> function (response) {</div>
             <div class="line-indent-two">$('#log').text('version');</div>
             <div class="line-indent-two">showResponse(response);</div>
             <div class="line-indent-two">});</div>

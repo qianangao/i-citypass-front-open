@@ -17,9 +17,10 @@ class GetRequestcode extends PureComponent {
         InParams: '',
         incomingParameters: [],
         outputParameters: [],
-        passInJSON: `<div class="line-first">{</div>
-          <div class="line-indent">"window.WebViewJavascriptBridge.callHandler('finish', null, function "</div>
-          <div class="line-indent"> "(response) {"</div>
+        passInJSON: `
+        <div class="line-first">{</div>
+          <div class="line-indent">window.WebViewJavascriptBridge.callHandler('finish', null, function </div>
+          <div class="line-indent">(response) {</div>
             <div class="line-indent-two">});</div>
           <div class="line-first">}</div>
         `,

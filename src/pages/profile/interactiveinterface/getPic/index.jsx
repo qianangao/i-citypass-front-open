@@ -65,8 +65,8 @@ class GetRequestcode extends PureComponent {
         ],
         passInJSON: `
         <div class="line-first">{</div>
-          <div class="line-indent">"window.WebViewJavascriptBridge.callHandler('getPicOrAlbum', null, "</div>
-          <div class="line-indent"> "function (response) {"</div>
+          <div class="line-indent">window.WebViewJavascriptBridge.callHandler('getPicOrAlbum', null, </div>
+          <div class="line-indent"> function (response) {</div>
             <div class="line-indent-two">$('#log').text('getPicOrAlbum');</div>
             <div class="line-indent-two">showResponse(response);</div>
             <div class="line-indent-two">});</div>

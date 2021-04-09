@@ -63,9 +63,9 @@ class GetRequestcode extends PureComponent {
         ],
         passInJSON: `
         <div class="line-first">{</div>
-          <div class="line-indent">"window.WebViewJavascriptBridge.callHandler('getRequstCode',null, "</div>
-          <div class="line-indent"> "function (response) {"</div>
-            <div class="line-indent-two">"$('#log').text('requstCode');</div>
+          <div class="line-indent">window.WebViewJavascriptBridge.callHandler('getRequstCode',null, </div>
+          <div class="line-indent"> function (response) {</div>
+            <div class="line-indent-two">$('#log').text('requstCode');</div>
             <div class="line-indent-two">showResponse(response);</div>
             <div class="line-indent-two">});</div>
           <div class="line-first">}</div>

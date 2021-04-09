@@ -28,9 +28,9 @@ class GetRequestcode extends PureComponent {
         outputParameters: [],
         passInJSON: `
         <div class="line-first">{</div>
-          <div class="line-indent">"window.WebViewJavascriptBridge.callHandler('setNavigationBarTitle', "</div>
-          <div class="line-indent"> "{"title": "我是导航栏"}, function (response) {"</div>
-            <div class="line-indent-two">"$('#log').text('setNavigationBarTitle');"</div>
+          <div class="line-indent">window.WebViewJavascriptBridge.callHandler('setNavigationBarTitle', </div>
+          <div class="line-indent"> {"title": "我是导航栏"}, function (response) {</div>
+            <div class="line-indent-two">$('#log').text('setNavigationBarTitle');</div>
             <div class="line-indent-two">showResponse(response);</div>
             <div class="line-indent-two">});</div>
           <div class="line-first">}</div>
