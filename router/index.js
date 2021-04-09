@@ -282,9 +282,9 @@ const router = [
                     component: './profile/interactiveinterface/getAppVersion',
                   },
                   {
-                    name: 'queryFor-authorization',
-                    path: '/profile/interactiveinterface/queryFor-authorization',
-                    component: './profile/interactiveinterface/queryFor-authorization',
+                    name: 'locateInformation',
+                    path: '/profile/interactiveinterface/locateInformation',
+                    component: './profile/interactiveinterface/locateInformation',
                   },
                   {
                     name: 'getCurrentOperate',
@@ -310,6 +310,16 @@ const router = [
                     name: 'setNavHidden',
                     path: '/profile/interactiveinterface/setNavHidden',
                     component: './profile/interactiveinterface/setNavHidden',
+                  },
+                  {
+                    name: 'goBack',
+                    path: '/profile/interactiveinterface/goBack',
+                    component: './profile/interactiveinterface/goBack',
+                  },
+                  {
+                    name: 'closePage',
+                    path: '/profile/interactiveinterface/closePage',
+                    component: './profile/interactiveinterface/closePage',
                   },
                 ],
               },
