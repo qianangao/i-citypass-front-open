@@ -165,7 +165,7 @@ const StepContent = ({ stepData }) => (
 
 const SwiperContent = ({ swiperObj }) => (
   <div className={styles.swiperContent}>
-    <h2>智慧城市APP成果</h2>
+    <h2>智慧城市成果</h2>
     <SwiperComponent swiperObj={swiperObj} />
   </div>
 );
@@ -174,7 +174,7 @@ export const BasicIndex = () => {
   return (
     <div>
       <div className={styles.indexContainer}>
-        <Background title="智慧城市APP" des="市民用一个APP畅享全市综合服务" btnTitle="加入我们" />
+        <Background title="城市通APP" des="市民用一个APP畅享全市综合服务" btnTitle="加入我们" />
         <StepContent stepData={stepDataObj} />
         <SwiperContent swiperObj={swiperDataObj} />
       </div>
