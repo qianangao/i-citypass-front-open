@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Card } from 'antd';
-// import { connect } from 'umi';
 import CommonComponent from '@/components/JSBridgeComponent/Common';
+// import { connect } from 'umi';
 
-class GetRequestcode extends PureComponent {
+class QueryForAuthorization extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,9 +11,8 @@ class GetRequestcode extends PureComponent {
         isHeader: false,
         isRules: false,
         rules: '',
-        title: 'H5端从原生获取当前设备的操作系统',
-        requestName: 'getOS',
-        requestUrl: '返回码，成功（200），失败（500）',
+        title: 'H5端从原生获取当前位置信息，包括详细地址和经纬度，使用的是高德地图',
+        requestName: 'getLocation',
         outParams: 'Object   response',
         InParams: 'Object data',
         outputParameters: [
@@ -43,16 +42,23 @@ class GetRequestcode extends PureComponent {
           {
             key: 0,
             type: 'String',
-            parameter: 'os',
+            parameter: 'location',
             isNecessary: '是',
-            explain: '设备的操作系统，如ios，android',
+            explain: '详情地址',
+          },
+          {
+            key: 1,
+            type: 'String',
+            parameter: 'coordinate',
+            isNecessary: '是',
+            explain: '经纬度',
           },
         ],
         passInJSON: `
         <div class="line-first">{</div>
-          <div class="line-indent">window.WebViewJavascriptBridge.callHandler('getOS', null, function </div>
-          <div class="line-indent"> (response) {</div>
-            <div class="line-indent-two">$('#log').text('getOS');</div>
+          <div class="line-indent">window.WebViewJavascriptBridge.callHandler('getLocation', null, </div>
+          <div class="line-indent"> function (response) {</div>
+            <div class="line-indent-two">$('#log').text('location');</div>
             <div class="line-indent-two">showResponse(response);</div>
             <div class="line-indent-two">});</div>
           <div class="line-first">}</div>
@@ -60,10 +66,11 @@ class GetRequestcode extends PureComponent {
         `,
         returnInJson: `
           <div class="line-first">{</div>
-            <div class="line-indent">"msg": “msg”:”success”,</div>
+            <div class="line-indent">“msg”:”success”,</div>
             <div class="line-indent">"code": “code”:”200”,</div>
             <div class="line-indent">“data”: {</div>
-              <div class="line-indent-two">“os”:”ios”</div>   
+              <div class="line-indent-two">“location”:”陕西省西安市未央区欧亚大道”,</div>
+              <div class="line-indent-two">“coordinate”:”108.995710,34.331199”</div>
               <div class="line-indent-two">}</div>
           <div class="line-first">}</div>
         `,
@@ -83,8 +90,9 @@ class GetRequestcode extends PureComponent {
   }
 }
 
-// export default connect(({ getSpace, loading }) => ({
-//   getSpace,
-//   loading: loading.models.getSpace,
-// }))(GetRequestcode);
-export default GetRequestcode;
+export default QueryForAuthorization;
+
+// export default connect(({ querySpace, loading }) => ({
+//   querySpace,
+//   loading: loading.models.querySpace,
+// }))(QueryForAuthorization);

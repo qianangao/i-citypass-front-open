@@ -11,32 +11,21 @@ class GetRequestcode extends PureComponent {
         isHeader: false,
         isRules: false,
         rules: '',
-        title: 'H5端通过调用此方法设置原生的标题栏是否隐藏',
-        requestName: 'setNavigationBarState',
-        requestUrl: '返回码，成功（200），失败（500）',
+        title: '返回上一个页面',
+        requestName: 'goBack',
         outParams: '',
         InParams: '',
-        incomingParameters: [
-          {
-            key: 0,
-            type: 'String',
-            parameter: 'state',
-            isNecessary: '是',
-            explain: '是否隐藏，false不隐藏，true隐藏',
-          },
-        ],
+        incomingParameters: [],
         outputParameters: [],
-        passInJSON: `
+        passInJSON: ``,
+        returnInJson: ``,
+        jsJson: `
         <div class="line-first">{</div>
-          <div class="line-indent">window.WebViewJavascriptBridge.callHandler('setNavigationBarState', </div>
-          <div class="line-indent"> {"state": "false"}, function (response) {</div>
-            <div class="line-indent-two">$('#log').text('setNavigationBarState');</div>
-            <div class="line-indent-two">showResponse(response);</div>
+          <div class="line-indent">window.WebViewJavascriptBridge.callHandler('goback', null, function </div>
+          <div class="line-indent">(response) {</div>
             <div class="line-indent-two">});</div>
           <div class="line-first">}</div>
-
         `,
-        returnInJson: ``,
       },
     };
   }

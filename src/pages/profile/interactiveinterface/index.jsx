@@ -8,8 +8,8 @@ class AuthorizationInterface extends Component {
     const url = match.url === '/' ? '' : match.url;
 
     switch (key) {
-      case 'queryFor-authorization':
-        history.push(`${url}/queryFor-authorization`);
+      case 'locateInformation':
+        history.push(`${url}/locateInformation`);
         break;
 
       case 'getAppVersion':
@@ -32,8 +32,20 @@ class AuthorizationInterface extends Component {
         history.push(`${url}/setNavTitle`);
         break;
 
+      case 'getPic':
+        history.push(`${url}/getPic`);
+        break;
+
       case 'setNavHidden':
         history.push(`${url}/setNavHidden`);
+        break;
+
+      case 'goBack':
+        history.push(`${url}/goBack`);
+        break;
+
+      case 'closePage':
+        history.push(`${url}/closePage`);
         break;
 
       default:
@@ -52,7 +64,7 @@ class AuthorizationInterface extends Component {
       return tabKey;
     }
 
-    return 'queryFor-authorization';
+    return 'locateInformation';
   };
 
   render() {
@@ -66,7 +78,7 @@ class AuthorizationInterface extends Component {
         tab: '获取版本号',
       },
       {
-        key: 'queryFor-authorization',
+        key: 'locateInformation',
         tab: '获取定位信息',
       },
       {
@@ -88,6 +100,14 @@ class AuthorizationInterface extends Component {
       {
         key: 'setNavHidden',
         tab: '设置原生导航栏是否隐藏',
+      },
+      {
+        key: 'goBack',
+        tab: '返回上一页面',
+      },
+      {
+        key: 'closePage',
+        tab: '关闭页面',
       },
     ];
     const { children } = this.props;
