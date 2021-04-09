@@ -66,53 +66,6 @@ const router = [
               },
             ],
           },
-          // {
-          //   path: '/home',
-          //   name: 'home',
-          //   component: './home/basic-index',
-          // },
-          // {
-          //   path: '/dashboard',
-          //   name: 'dashboard',
-          //   routes: [
-          //     {
-          //       path: '/',
-          //       redirect: '/dashboard/analysis',
-          //     },
-          //     {
-          //       component: './dashboard/analysis'
-          //     }
-          //   ],
-          // },
-          {
-            path: '/form',
-            // icon: 'form',
-            name: 'form',
-            routes: [
-              {
-                path: '/form',
-                redirect: '/form/basic-form',
-              },
-              {
-                name: 'basic-form',
-                icon: 'smile',
-                path: '/form/basic-form',
-                component: './form/basic-form',
-              },
-              {
-                name: 'step-form',
-                icon: 'smile',
-                path: '/form/step-form',
-                component: './form/step-form',
-              },
-              {
-                name: 'advanced-form',
-                icon: 'smile',
-                path: '/form/advanced-form',
-                component: './form/advanced-form',
-              },
-            ],
-          },
           {
             path: '/list',
             // icon: 'table',
