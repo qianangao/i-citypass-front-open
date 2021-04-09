@@ -25,12 +25,13 @@ const columns = [
     key: 'explain',
   },
 ];
-class GetRequestcode extends PureComponent {
+
+class ModifyUserAuthorizationStatus extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       getRequestcode: {
-        requestName: 'getRequstCode',
+        requestName: 'getAppVersion',
         requestobject: 'object',
         returnParam: 'data',
         requestres: 'response',
@@ -61,9 +62,9 @@ class GetRequestcode extends PureComponent {
           {
             key: 0,
             type: 'String',
-            parameter: 'code',
+            parameter: 'version',
             isNecessary: '是',
-            explain: '',
+            explain: '版本号',
           },
         ],
         passInJSON: `
@@ -71,16 +72,14 @@ class GetRequestcode extends PureComponent {
           window.WebViewJavascriptBridge.callHandler('getRequstCode',null, function (response) {
             $('#log').text('requstCode');
             showResponse(response);
-          }); 
+        });
         }
         `,
         returnInJson: `
           {
-            “msg”:”success”,
-            “code”:”200”,
-            “data”: {
-            “requstCode”:”a48fcb7c4ca0a1dded0ccd1227801c0d5d9c48b9e85417b2f55da4902233f260”
-          }
+            "msg": "操作成功",
+            "code": "200",
+            "data": "Your_Request_Code"
         }
         `,
       },
@@ -93,7 +92,7 @@ class GetRequestcode extends PureComponent {
       <div>
         <Card bordered={false}>
           <Card className="content-show" bordered={false}>
-            <p className="show-title">H5端从原生获取requstCode用于去开放平台查询用户信息</p>
+            <p className="show-title">H5端从原生获取当前app的版本号</p>
             <Card className="show-content" bordered={false}>
               <div className="show-url">
                 方法名：
@@ -148,8 +147,9 @@ class GetRequestcode extends PureComponent {
   }
 }
 
-// export default connect(({ getSpace, loading }) => ({
-//   getSpace,
-//   loading: loading.models.getSpace,
-// }))(GetRequestcode);
-export default GetRequestcode;
+export default ModifyUserAuthorizationStatus;
+
+// export default connect(({ modifySpace, loading }) => ({
+//   modifySpace,
+//   loading: loading.models.modifySpace,
+// }))(ModifyUserAuthorizationStatus);

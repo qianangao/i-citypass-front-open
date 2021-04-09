@@ -12,8 +12,8 @@ class AuthorizationInterface extends Component {
         history.push(`${url}/queryFor-authorization`);
         break;
 
-      case 'modifyUserAuthorization-status':
-        history.push(`${url}/modifyUserAuthorization-status`);
+      case 'getAppVersion':
+        history.push(`${url}/getAppVersion`);
         break;
 
       case 'get-requestcode':
@@ -62,7 +62,7 @@ class AuthorizationInterface extends Component {
         tab: '获取requestCode',
       },
       {
-        key: 'modifyUserAuthorization-status',
+        key: 'getAppVersion',
         tab: '获取版本号',
       },
       {

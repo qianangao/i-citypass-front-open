@@ -152,7 +152,7 @@ const router = [
                 ],
               },
               {
-                path: '/list/serviceSpecification',
+                path: '/list/authorization-interface',
                 name: 'authorization-interface',
                 component: './list/authorization-interface',
                 routes: [
@@ -324,9 +324,9 @@ const router = [
                     component: './profile/interactiveinterface/get-requestcode',
                   },
                   {
-                    name: 'modifyUserAuthorization-status',
-                    path: '/profile/interactiveinterface/modifyUserAuthorization-status',
-                    component: './profile/interactiveinterface/modifyUserAuthorization-status',
+                    name: 'getAppVersion',
+                    path: '/profile/interactiveinterface/getAppVersion',
+                    component: './profile/interactiveinterface/getAppVersion',
                   },
                   {
                     name: 'queryFor-authorization',
