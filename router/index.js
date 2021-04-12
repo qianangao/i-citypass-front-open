@@ -33,16 +33,24 @@ const router = [
           },
         ],
       },
-      // {
-      //   path: '/home',
-      //   component: '../layouts/BasicLayout',
-      //   routes: [
-      //     {
-      //       name: 'home',
-      //       component: './home/basic-index',
-      //     },
-      //   ],
-      // },
+      {
+        path: '/agreement/service-agreement',
+        name: 'service',
+        routes: [
+          {
+            component: './agreement/service-agreement',
+          },
+        ],
+      },
+      {
+        path: '/agreement/privacy-agreement',
+        name: 'privacy',
+        routes: [
+          {
+            component: './agreement/privacy-agreement',
+          },
+        ],
+      },
       {
         path: '/',
         component: '../layouts/BasicLayout',
@@ -66,6 +74,24 @@ const router = [
               },
             ],
           },
+          // {
+          //   path: '/agreement/service-agreement',
+          //   name: 'service',
+          //   routes: [
+          //     {
+          //       component: './agreement/service-agreement',
+          //     },
+          //   ],
+          // },
+          // {
+          //   path: '/agreement/privacy-agreement',
+          //   name: 'privacy',
+          //   routes: [
+          //     {
+          //       component: './agreement/privacy-agreement',
+          //     },
+          //   ],
+          // },
           {
             path: '/list',
             // icon: 'table',
