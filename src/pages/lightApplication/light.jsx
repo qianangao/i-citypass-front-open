@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
-import { Form, Table, Input, Button, Row, Col, TreeSelect, Select, Radio } from 'antd';
+import {
+  Form,
+  Table,
+  Input,
+  Button,
+  Row,
+  Col,
+  TreeSelect,
+  Select,
+  Radio,
+  // Upload
+} from 'antd';
+// import { PlusOutlined } from '@ant-design/icons';
+import './light.less';
 
 const { Option } = Select;
-
+const { TextArea } = Input;
 // const { Item } = Form;
 class lightApplication extends Component {
   state = {
+    ifBigPicUrl: '1',
+    // bigLoading: false,
+    bigIcon: '',
+    treeData: [],
+    icon: '',
+    // loading: false,
     ifmodel: true,
     // title: "新增",
     loading: false,
@@ -41,27 +60,38 @@ class lightApplication extends Component {
     // menuData: {},
     // childrenSelect: [],
     // appMenuId: "",
-    // treeData: []
+    // treeData: [],
   };
 
+  // 新增框点击确认
+  onOk2 = () => {
+    this.setState({
+      ifmodel: true,
+    });
+  };
+
+  // 打开新增
   addApplication = () => {
     this.setState({
       ifmodel: false,
     });
   };
 
-  render() {
-    const layout = {
-      labelCol: {
-        xxl: 8, // ≥1600px 响应式栅格
-        xl: 8, // ≥1200px 响应式栅格
-      },
-      wrapperCol: {
-        xxl: 16,
-        xl: 16,
-      },
-    };
+  // 关闭新增
+  RadioChange = (e) => {
+    this.setState({
+      ifBigPicUrl: e.target.value,
+    });
+  };
 
+  // 关闭新增框
+  handleCancel2 = () => {
+    this.setState({
+      ifmodel: true,
+    });
+  };
+
+  render() {
     const columns = [
       {
         title: '序号',
@@ -140,43 +170,57 @@ class lightApplication extends Component {
         ),
       },
     ];
+    // const props = {
+    //     name: "file",
+    //     listType: "picture-card",
+    //     headers: {
+    //         //   Authorization: `Bearer ${storageUtils.getToken()}`,
+    //     },
+    //     showUploadList: false,
+    //     // action: uploadIconUrl,
+    // };
+    // const icon = undefined
+    // const bigIcon = undefined
+    // const imgReadUrl = ''
+    // const imgUrl = imgReadUrl + icon;
+    //   const bigImg = this.state.ifBigPicUrl || ifBigPicUrl;
+    // const bigIconimg = imgReadUrl + bigIcon;
     // const { loading, dataSource, detailVisible, total, current, pageSize, visible, isAdd, lightData, title, disabled, menuVisible, menuData } = this.state
     // const {getFieldDecorator} = this.props.form
+
     return (
       <div>
         {this.state.ifmodel ? (
           <div>
-            <Row gutter={16}>
-              <Form {...layout} onSubmit={this.handleSubmit} className="form">
-                <Row gutter={16}>
-                  <Col span={6}>
-                    <Form.Item label="应用名称">
-                      <Input placeholder="请输入应用名称" />
-                    </Form.Item>
-                  </Col>
-                  <Col span={6}>
-                    <Form.Item label="所属菜单">
-                      <TreeSelect treeData={this.state.treeData} placeholder="请选择所属菜单" />
-                    </Form.Item>
-                  </Col>
-                  <Col span={6}>
-                    <Form.Item label="联系人">
-                      <Input placeholder="请输入联系人" />
-                    </Form.Item>
-                  </Col>
-                  <Col span={6}>
-                    <Form.Item>
-                      <Button type="primary" htmlType="submit" style={{ marginRight: 2 }}>
-                        查询
-                      </Button>
-                      <Button type="primary" htmlType="reset" onClick={this.handleReset}>
-                        重置
-                      </Button>
-                    </Form.Item>
-                  </Col>
-                </Row>
-              </Form>
-            </Row>
+            <Form onSubmit={this.handleSubmit} className="form">
+              <Row gutter={16}>
+                <Col span={6}>
+                  <Form.Item label="应用名称">
+                    <Input placeholder="请输入应用名称" />
+                  </Form.Item>
+                </Col>
+                <Col span={6}>
+                  <Form.Item label="所属菜单">
+                    <TreeSelect treeData={this.state.treeData} placeholder="请选择所属菜单" />
+                  </Form.Item>
+                </Col>
+                <Col span={6}>
+                  <Form.Item label="联系人">
+                    <Input placeholder="请输入联系人" />
+                  </Form.Item>
+                </Col>
+                <Col span={6}>
+                  <Form.Item>
+                    <Button type="primary" htmlType="submit" style={{ marginRight: 2 }}>
+                      查询
+                    </Button>
+                    <Button type="primary" htmlType="reset" onClick={this.handleReset}>
+                      重置
+                    </Button>
+                  </Form.Item>
+                </Col>
+              </Row>
+            </Form>
             <div className="AddBtn">
               <Button type="primary" onClick={this.addApplication}>
                 新增轻应用
@@ -191,17 +235,18 @@ class lightApplication extends Component {
             ></Table>
           </div>
         ) : (
-          //    model
           <div>
             {/* <h4>{this.state.title}</h4> */}
-
             <Form
               initialValues={{
                 ifCarryUser: '0',
                 ifHome: '1',
+                appStatus: '0',
+                ifHot: '1',
+                ifBigPicUrl: '1',
               }}
             >
-              <Row>
+              <Row gutter={16}>
                 <Col span={11}>
                   <Form.Item
                     label="应用名称"
@@ -227,7 +272,7 @@ class lightApplication extends Component {
                   </Form.Item>
                 </Col>
               </Row>
-              <Row>
+              <Row gutter={16}>
                 <Col span={11}>
                   <Form.Item label="访问方式" name="ifCarryUser">
                     <Select placeholder="请选择访问方式">
@@ -247,7 +292,7 @@ class lightApplication extends Component {
                   </Form.Item>
                 </Col>
               </Row>
-              <Row>
+              <Row gutter={16}>
                 <Col span={11}>
                   <Form.Item
                     label="应用类别"
@@ -274,18 +319,14 @@ class lightApplication extends Component {
                   </Form.Item>
                 </Col>
               </Row>
-              <Row>
+              <Row gutter={16}>
                 <Col span={11}>
                   <Form.Item
                     label="所属菜单"
                     name="appMenuId"
                     rules={[{ required: true, message: '请输入所属菜单' }]}
                   >
-                    <Select placeholder="请输入所属菜单！">
-                      {/* <Option value="0">未认证</Option>
-                                            <Option value="1">访客</Option>
-                                            <Option value="2">已认证</Option> */}
-                    </Select>
+                    <Select placeholder="请输入所属菜单！"></Select>
                   </Form.Item>
                 </Col>
                 <Col span={11}>
@@ -296,6 +337,167 @@ class lightApplication extends Component {
                     </Radio.Group>
                   </Form.Item>
                 </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={11}>
+                  <Form.Item
+                    label="联系人姓名"
+                    name="linkman"
+                    rules={[{ required: true, message: '请输入联系人姓名' }]}
+                  >
+                    <Input placeholder="请输入联系人姓名" />
+                  </Form.Item>
+                </Col>
+                <Col span={11}>
+                  <Form.Item label="是否热门" name="ifHot">
+                    <Radio.Group>
+                      <Radio value="0">是</Radio>
+                      <Radio value="1">否</Radio>
+                    </Radio.Group>
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={11}>
+                  <Form.Item
+                    label="联系电话"
+                    name="phone"
+                    rules={[
+                      { required: true, message: '请输入联系电话' },
+                      {
+                        pattern: new RegExp(/^1[3|4|5|6|7|8|9][0-9]\d{8}$/),
+                        message: '请输入正确格式的电话号码',
+                      },
+                    ]}
+                  >
+                    <Input placeholder="请输入联系电话" maxLength={11} />
+                  </Form.Item>
+                </Col>
+                <Col span={11}>
+                  <Form.Item label="是否大图" name="ifBigPicUrl">
+                    <Radio.Group onChange={this.RadioChange}>
+                      <Radio value="0">是</Radio>
+                      <Radio value="1">否</Radio>
+                    </Radio.Group>
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={11}>
+                  <Form.Item
+                    label="所属委办局"
+                    name="deptId"
+                    rules={[{ required: true, message: '请选择所属委办局' }]}
+                  >
+                    <Select placeholder="请选择所属委办局"></Select>
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <Col span={11}>
+                  {/* <Form.Item
+                                        label="应用图标"
+                                        name="icon"
+                                        rules={[{ required: true, message: '请输入图标！' }]}>
+                                        <>
+                                            <Upload
+                                                className="avatar-uploader"
+                                                {...props}
+                                                beforeUpload={this.beforeUpload}
+                                                onChange={this.handleChange}
+                                            >
+                                                
+                                                {this.state.icon ? (
+                                                    <img
+                                                        src={imgReadUrl + this.state.icon}
+                                                        alt="avatar111"
+                                                        style={{ width: "100%" }}
+                                                    />
+                                                ) : icon ? (
+                                                    <img
+                                                        src={imgUrl}
+                                                        alt="avatar2222"
+                                                        style={{ width: "100%" }}
+                                                    />
+                                                ) : (
+                                                    <div>
+                                                        <PlusOutlined />
+
+                                                        {/* <Icon
+                              type={this.state.loading ? "loading" : "PlusOutlined "}
+                            /> */}
+                  {/* <div className="ant-upload-text"></div>
+                                                    </div>
+                                                )}
+                                            </Upload>
+                                            <span style={{ fontSize: 10 }}>
+                                                图标分辨率:200*200，只能上传jpg/png/jpeg格式,且不超过5MB!
+                      </span>
+                                        </>
+                                    </Form.Item> */}
+                </Col>
+
+                {/* <Col span={11}>
+                                    {this.state.ifBigPicUrl === '0' ? <Form.Item
+                                        label="大图图标"
+                                        name="icon"
+                                        rules={[{ required: true, message: '请输入大图！' }]}>
+
+                                        <Upload
+                                            className="avatar-big-uploader"
+                                            {...props}
+                                            beforeUpload={this.beforeUpload}
+                                            onChange={this.handleChange}
+                                        >
+                                            {this.state.bigIcon ? (
+                                                <img
+                                                    src={imgReadUrl + this.state.bigIcon}
+                                                    alt="avatar"
+                                                // style={{ width: "100%" }}
+                                                />
+                                            ) : bigIcon ? (
+                                                <img
+                                                    src={bigIconimg}
+                                                    alt="avatar2222"
+                                                    style={{ width: "100%" }}
+                                                />
+                                            ) : (
+                                                <div>
+                                                    <PlusOutlined />
+
+                                                    {/* <Icon
+                              type={this.state.loading ? "loading" : "PlusOutlined "}
+                            /> */}
+                {/* <div className="ant-upload-text"></div>
+                                                </div>
+                                            )}
+                                        </Upload>
+                                        <span style={{ fontSize: 10 }}>
+                                            大图分辨率：750*252，只能上传jpg/png/jpeg格式，且不超过5MB!
+                      </span>
+
+                                    </Form.Item> : ''}
+                                </Col> */}
+              </Row>
+              <Row gutter={16}>
+                <Col span={22}>
+                  <Form.Item label="应用简介" name="content">
+                    <TextArea
+                      style={{ resize: 'none' }}
+                      maxLength={200}
+                      rows={3}
+                      placeholder="请输入应用简介"
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row gutter={16}>
+                <div className="btnox">
+                  <Button onClick={this.onOk2} className="okbtn" type="primary">
+                    确认
+                  </Button>
+                  <Button onClick={this.handleCancel2}>取消</Button>
+                </div>
               </Row>
             </Form>
           </div>
