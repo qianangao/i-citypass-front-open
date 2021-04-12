@@ -95,9 +95,9 @@ class GetRequestcode extends PureComponent {
         `,
         returnInJson: `
           <div class="line-first">{</div>
-            <div class="line-indent">"msg": “msg”:”success”,</div>
-            <div class="line-indent">"code": “code”:”200”,</div>
-            <div class="line-indent">“data”: {</div>
+            <div class="line-indent">"msg": "success",</div>
+            <div class="line-indent">"code":"200",</div>
+            <div class="line-indent">"data": {</div>
               <div class="line-indent-two">“appVersion”:”1.0.0”,</div> 
               <div class="line-indent-two">“platform”:”ios”,</div>   
               <div class="line-indent-two">“deviceId”:”730A1A08-5F9B-42D7-96AC-9BCED7A1F597”,</div>   
