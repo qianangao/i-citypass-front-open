@@ -73,12 +73,12 @@ class GetRequestcode extends PureComponent {
         `,
         returnInJson: `
           <div class="line-first">{</div>
-            <div class="line-indent">"msg": “msg”:”success”,</div>
-            <div class="line-indent">"code": “code”:”200”,</div>
-            <div class="line-indent">“data”: {</div>
+            <div class="line-indent">"msg": "success",</div>
+            <div class="line-indent">"code":"200",</div>
+            <div class="line-indent">"data": {</div>
               <div class="line-indent-two">“requstCode”:”a48fcb7c4ca0a1dded0ccd1227801c0d5d9c48b9e85417</div>
               <div class="line-indent-two">b2f55da4902233f260”</div>
-              <div class="line-indent-two">}</div>
+              <div class="line-indent-two">}</div> 
           <div class="line-first">}</div>
         `,
       },

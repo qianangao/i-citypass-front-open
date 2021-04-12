@@ -20,7 +20,7 @@ class GetRequestcode extends PureComponent {
         passInJSON: ``,
         returnInJson: ``,
         jsJson: `
-        <div class="line-first">{</div>
+        <div class="line-first">{</div>  
           <div class="line-indent">window.WebViewJavascriptBridge.callHandler('goback', null, function </div>
           <div class="line-indent">(response) {</div>
             <div class="line-indent-two">});</div>
