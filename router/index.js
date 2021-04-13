@@ -74,24 +74,6 @@ const router = [
               },
             ],
           },
-          // {
-          //   path: '/agreement/service-agreement',
-          //   name: 'service',
-          //   routes: [
-          //     {
-          //       component: './agreement/service-agreement',
-          //     },
-          //   ],
-          // },
-          // {
-          //   path: '/agreement/privacy-agreement',
-          //   name: 'privacy',
-          //   routes: [
-          //     {
-          //       component: './agreement/privacy-agreement',
-          //     },
-          //   ],
-          // },
           {
             path: '/list',
             // icon: 'table',
@@ -218,7 +200,7 @@ const router = [
                 ],
               },
               // {
-              //   name: 'authorization-interface',
+              //   name: 'basic-list',
               //   icon: 'smile',
               //   path: '/list/basic-list',
               //   component: './list/basic-list',
