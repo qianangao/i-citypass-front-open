@@ -74,7 +74,8 @@ export const LoginPage = (props) => {
       setIsRember(remember);
     }
   };
-  const jumpAgreement = (type) => {
+  const jumpAgreement = (e, type) => {
+    e.stopPropagation();
     props.submitCancel(false);
     if (type === 'service') {
       history.push({
@@ -173,10 +174,10 @@ export const LoginPage = (props) => {
               </FormItem>
             </Col>
             <Col md={18} sm={18} className="agreement">
-              <span className="linkStyle" onClick={jumpAgreement('service')}>
+              <span className="linkStyle" onClick={(e) => jumpAgreement(e, 'service')}>
                 《用户服务协议》、
               </span>
-              <span className="linkStyle" onClick={jumpAgreement('privacy')}>
+              <span className="linkStyle" onClick={(e) => jumpAgreement(e, 'privacy')}>
                 《用户隐私协议》
               </span>
             </Col>
