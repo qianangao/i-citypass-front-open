@@ -11,11 +11,13 @@ import LoginIcon from '@/assets/login.png';
 class AvatarDropdown extends React.Component {
   state = {
     modalVisible: false,
+    myKey: '',
   };
 
   goLogin = () => {
     this.setState({
       modalVisible: true,
+      myKey: Math.random(),
     });
   };
 
@@ -47,7 +49,7 @@ class AvatarDropdown extends React.Component {
       },
       menu,
     } = this.props;
-    const { modalVisible } = this.state;
+    const { modalVisible, myKey } = this.state;
     const menuHeaderDropdown = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
         {/* {menu && (
@@ -92,7 +94,7 @@ class AvatarDropdown extends React.Component {
             <img src={LoginIcon} className={styles.loginIcon} alt="" /> 登录
           </div>
         </span>
-        <LoginPage modalVisible={modalVisible} submitCancel={this.submitCancel} />
+        <LoginPage modalVisible={modalVisible} submitCancel={this.submitCancel} myKey={myKey} />
       </div>
     );
   }

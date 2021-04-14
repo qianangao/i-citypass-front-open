@@ -8,10 +8,11 @@
 export default {
   dev: {
     '/api/': {
-      target: 'https://preview.pro.ant.design',
+      // target: 'https://preview.pro.ant.design',
+      target: 'http://10.92.119.167:8083',
       changeOrigin: true,
       pathRewrite: {
-        '^': '',
+        '/api/': '/',
       },
     },
   },

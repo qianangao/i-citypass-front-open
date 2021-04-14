@@ -1,5 +1,5 @@
 /** Request 网络请求工具 更详细的 api 文档: https://github.com/umijs/umi-request */
-import { extend } from 'umi-request';
+import request, { extend } from 'umi-request';
 import { notification } from 'antd';
 
 const codeMessage = {
@@ -41,10 +41,20 @@ const errorHandler = (error) => {
   return response;
 };
 /** 配置request请求时的默认参数 */
+request.interceptors.response.use(async (response) => {
+  return response;
+});
 
-const request = extend({
+request.interceptors.request.use((url, options) => {
+  return {
+    url,
+    options,
+  };
+});
+
+const http = extend({
   errorHandler,
   // 默认错误处理
   credentials: 'include', // 默认请求是否带上cookie
 });
-export default request;
+export default http;
