@@ -57,11 +57,15 @@ request.interceptors.response.use(async (response) => {
 
 request.interceptors.request.use((url, options) => {
   const option = Object.assign(options, {});
-  if (url === '/api/system/user/getUserInfo' || url === '/api/auth/logout') {
-    // 获取用户信息
-    if (localStorage.getItem('accessToken')) {
-      option.headers.Authorization = `${localStorage.getItem('accessToken')}`; // 请求携带自定义token
-    }
+  // if (url === '/api/system/user/getUserInfo' || url === '/api/auth/logout') {
+  //   // 获取用户信息
+  //   if (localStorage.getItem('accessToken')) {
+  //     option.headers.Authorization = `${localStorage.getItem('accessToken')}`; // 请求携带自定义token
+  //   }
+  // }
+  // 获取用户信息
+  if (localStorage.getItem('accessToken')) {
+    option.headers.Authorization = `${localStorage.getItem('accessToken')}`; // 请求携带自定义token
   }
   return {
     url,
