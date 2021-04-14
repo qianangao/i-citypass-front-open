@@ -46,7 +46,7 @@ export const LoginPage = (props) => {
     if (dispatch) {
       const params = {
         uuid: codeObj && codeObj.uuid,
-        userName: values && values.userName,
+        username: values && values.username,
         password: values && values.password,
         code: values && values.code,
       };
@@ -56,6 +56,13 @@ export const LoginPage = (props) => {
       }).then((res) => {
         if (res.code === 200) {
           props.submitCancel(false);
+          localStorage.setItem('accessToken', res.data && res.data.accessToken);
+          // 获取用户信息
+          dispatch({
+            type: 'loginPageContent/getUserInfo',
+          }).then((response) => {
+            sessionStorage.setItem('userName', response.data && response.data.userName);
+          });
         } else {
           refreshCode();
         }

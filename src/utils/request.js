@@ -1,6 +1,6 @@
 /** Request 网络请求工具 更详细的 api 文档: https://github.com/umijs/umi-request */
 import request, { extend } from 'umi-request';
-import { notification } from 'antd';
+import { message, notification } from 'antd';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -37,18 +37,35 @@ const errorHandler = (error) => {
       message: '网络异常',
     });
   }
-
   return response;
 };
 /** 配置request请求时的默认参数 */
 request.interceptors.response.use(async (response) => {
+  const data = await response.clone().json();
+  if (data && data.code) {
+    if (data.code === 200) {
+      // eslint-disable-next-line no-console
+      console.log(data);
+    } else if (data.code === 2001) {
+      message.info('登录状态已过期');
+    } else {
+      message.error('网络发生异常，无法连接服务器');
+    }
+  }
   return response;
 });
 
 request.interceptors.request.use((url, options) => {
+  const option = Object.assign(options, {});
+  if (url === '/api/system/user/getUserInfo' || url === '/api/auth/logout') {
+    // 获取用户信息
+    if (localStorage.getItem('accessToken')) {
+      option.headers.Authorization = `${localStorage.getItem('accessToken')}`; // 请求携带自定义token
+    }
+  }
   return {
     url,
-    options,
+    option,
   };
 });
 

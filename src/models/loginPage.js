@@ -1,4 +1,4 @@
-import { login, getCode } from '../services/loginPage';
+import { login, getCode, getUserInfo, logout } from '../services/loginPage';
 import { history } from 'umi';
 import { message } from 'antd';
 
@@ -7,6 +7,7 @@ const Model = {
   state: {
     loginObj: {},
     codeObj: {},
+    userObj: {},
   },
   effects: {
     *authLogin({ payload }, { call, put }) {
@@ -32,6 +33,22 @@ const Model = {
         payload: response.data,
       });
     },
+    *getUserInfo({ payload }, { call, put }) {
+      const response = yield call(getUserInfo, payload);
+      yield put({
+        type: 'loginUserInfo',
+        payload: response.data,
+      });
+      return response;
+    },
+    *logout({ payload }, { call, put }) {
+      const response = yield call(logout, payload);
+      yield put({
+        type: 'loginUserInfo',
+        payload: {},
+      });
+      return response;
+    },
   },
   reducers: {
     login(state, action) {
@@ -39,6 +56,9 @@ const Model = {
     },
     loginCode(state, action) {
       return { ...state, codeObj: action.payload || {} };
+    },
+    loginUserInfo(state, action) {
+      return { ...state, userObj: action.payload || {} };
     },
   },
 };
