@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Input, Modal, Card, Row, Col, Checkbox } from 'antd';
 import { connect, history } from 'umi';
+import md5 from 'md5';
 import './style.less';
 
 const FormItem = Form.Item;
@@ -47,7 +48,7 @@ export const LoginPage = (props) => {
       const params = {
         uuid: codeObj && codeObj.uuid,
         username: values && values.username,
-        password: values && values.password,
+        password: md5(values) && md5(values.password),
         code: values && values.code,
       };
       dispatch({

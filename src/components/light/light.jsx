@@ -6,43 +6,134 @@ import {
   Button,
   Row,
   Col,
-  // TreeSelect,
+  TreeSelect,
   Select,
   Radio,
   Upload,
+  message,
 } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import { connect } from 'umi';
 
 const { Option } = Select;
 const { TextArea } = Input;
 
 class light extends Component {
+  formRef = React.createRef();
+
   state = {
-    ifBigPicUrl: '1',
+    ifwx: '',
+    shuoshuSelect: [],
+    DictData: [],
+    treeData: [],
+    ifBigPicUrl: '',
     // bigLoading: false,
     bigIcon: '',
-    treeData: [],
     icon: '',
     // loading: false,
     ifmodel: true,
     // title: "新增",
     loading: false,
     Reset: '',
-    params: {
-      name: '',
-      createTime: '',
-      linkman: '',
-      phone: '',
-      approvalStatus: '0',
-      ifHome: '',
-      appType: '',
-    },
   };
 
-  // 新增框点击确认
-  onOk2 = () => {
-    this.setState({
-      ifmodel: true,
+  componentDidMount() {
+    this.treelist();
+    this.getdept();
+    this.getDictData();
+  }
+
+  // 获取所属委办局
+  getdept = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'lihghtList/dept',
+    }).then((res) => {
+      if (res.code === 200) {
+        const children = [];
+        res.data.map((item) => {
+          return children.push(
+            <Option key={item.deptId} value={item.deptId}>
+              {item.type}
+              {item.deptName}
+            </Option>,
+          );
+        });
+
+        this.setState({
+          shuoshuSelect: children,
+        });
+      }
+    });
+  };
+
+  // 获取类别
+  getDictData = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'lihghtList/DictData',
+    }).then((res) => {
+      if (res.code === 200) {
+        const children = [];
+        res.data.map((item) => {
+          return children.push(
+            <Option key={item.dictValue} value={item.dictValue}>
+              {item.dictLabel}
+            </Option>,
+          );
+        });
+
+        this.setState({
+          DictData: children,
+        });
+      }
+    });
+  };
+
+  treelist = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'lihghtList/menuTree',
+    }).then((res) => {
+      if (res.code === 200) {
+        for (let i = 0; i < res.data.length; i += 1) {
+          res.data[i].value = res.data[i].id;
+          res.data[i].title = res.data[i].menuName;
+          res.data[i].key = res.data[i].id;
+          res.data[i].disabled = true;
+          if (res.data[i].children) {
+            this.getTree(res.data[i].children);
+          }
+        }
+        const treeData = [];
+        treeData.push(res.data);
+        let data = [];
+        data = this.changeData(treeData[0]);
+        this.setState({ treeData: data });
+      }
+    });
+  };
+
+  // 递归处理treeData
+  changeData = (data) => {
+    const jsonObj = data;
+    jsonObj.forEach((item) => {
+      if (item.children && Array.isArray(item.children)) {
+        this.changeData(item.children);
+      }
+    });
+    return jsonObj;
+  };
+
+  getTree = (data) => {
+    data.forEach((item) => {
+      item.key = item.id;
+      item.title = `${item.type}- ${item.menuName}`;
+      item.value = item.id;
+      if (item.children && item.children.length > 0) {
+        item.disabled = true;
+        this.getTree(item.children);
+      }
     });
   };
 
@@ -61,51 +152,137 @@ class light extends Component {
     });
   };
 
-  // beforeUpload = (file) => {
-  //   const isJpgOrPng =
-  //     file.type === "image/jpeg" ||
-  //     file.type === "image/png" ||
-  //     file.type === "image/jpg";
-  //   if (!isJpgOrPng) {
-  //     message.error("只能上传jpg/png/jpeg格式的缩略图!");
-  //   }
-  //   const isLt2M = file.size / 1024 / 1024 < 5;
-  //   if (!isLt2M) {
-  //     message.error("图片不能超过5MB!");
-  //   }
-  //   return isJpgOrPng && isLt2M;
-  // };
+  // 微信或小程序切换按钮
+  ifwx = (e) => {
+    this.setState({
+      ifwx: e,
+    });
+  };
 
-  // handleChange = (info) => {
-  //   console.log(info)
-  //   if (info.file.status === "uploading") {
-  //     this.setState({ loading: true });
-  //     return;
-  //   }
-  //   if (info.file.status === "done") {
-  //     this.setState({
-  //       icon: info.file.response.data,
-  //       loading: false,
-  //     });
-  //   }
-  // };
+  // 提交事件 ;
+  onFinish = (values) => {
+    if (this.props.isadd) {
+      const { dispatch } = this.props;
+      dispatch({
+        type: 'lihghtList/Add',
+        payload: values,
+      }).then((res) => {
+        if (res.code === 200) {
+          this.handleCancel2();
+          message.success(res.msg);
+        } else {
+          message.error(res.msg);
+        }
+      });
+    } else {
+      const { dispatch } = this.props;
+      values.id = this.props.lightData.id;
+      values.approvalStatus = this.props.lightData.approvalStatus;
+      dispatch({
+        type: 'lihghtList/update',
+        payload: values,
+      }).then((res) => {
+        if (res.code === 200) {
+          this.handleCancel2();
+          message.success(res.msg);
+        } else {
+          message.error(res.msg);
+        }
+      });
+    }
+  };
+
+  beforeUpload = (file) => {
+    const isJpgOrPng =
+      file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg';
+    if (!isJpgOrPng) {
+      message.error('只能上传jpg/png/jpeg格式的缩略图!');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 5;
+    if (!isLt2M) {
+      message.error('图片不能超过5MB!');
+    }
+    return isJpgOrPng && isLt2M;
+  };
+
+  beforebigUpload = (file) => {
+    const isJpgOrPng =
+      file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg';
+    if (!isJpgOrPng) {
+      message.error('只能上传jpg/png/jpeg格式的缩略图!');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 5;
+    if (!isLt2M) {
+      message.error('图片不能超过5MB!');
+    }
+    return isJpgOrPng && isLt2M;
+  };
+
+  handleChange = (info) => {
+    if (info.file.status === 'uploading') {
+      this.setState({ loading: true });
+      return;
+    }
+    if (info.file.status === 'done') {
+      this.setState({
+        icon: info.file.response.data,
+        loading: false,
+      });
+      this.formRef.current.setFieldsValue({
+        icon: this.state.icon,
+      });
+    }
+  };
+
+  handleBigChange = (info) => {
+    if (info.file.status === 'uploading') {
+      this.setState({ bigLoading: true });
+      return;
+    }
+    if (info.file.status === 'done') {
+      this.setState({
+        bigIcon: info.file.response.data,
+        bigLoading: false,
+      });
+      this.formRef.current.setFieldsValue({
+        bigIcon: this.state.bigIcon,
+      });
+    }
+  };
 
   render() {
     const props = {
       name: 'file',
       listType: 'picture-card',
       headers: {
-        //   Authorization: `Bearer ${storageUtils.getToken()}`,
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       },
       showUploadList: false,
-      // action: uploadIconUrl,
+      action: '/api/system/file/upload',
     };
-    const icon = undefined;
-    const bigIcon = undefined;
-    const imgReadUrl = '';
+    const {
+      content,
+      appType,
+      deptId,
+      appMenuId,
+      icon,
+      ifHome,
+      ifBigPicUrl,
+      callBackUrl,
+      linkman,
+      phone,
+      version,
+      appStatus,
+      ifHot,
+      bigIcon,
+      ifCarryUser,
+      appVariety,
+    } = this.props.lightData;
+    const imgReadUrl = 'http://10.92.119.10/';
     const imgUrl = imgReadUrl + icon;
-    // const bigImg = this.state.ifBigPicUrl || ifBigPicUrl;
+    const bigImg = this.state.ifBigPicUrl || ifBigPicUrl;
     const bigIconimg = imgReadUrl + bigIcon;
+    const ifwx = this.state.ifwx || appVariety;
 
     let appicon;
     if (this.state.icon) {
@@ -123,7 +300,7 @@ class light extends Component {
       bigappicon = (
         <img src={imgReadUrl + this.state.bigIcon} alt="avatar" style={{ width: '100%' }} />
       );
-    } else if (icon) {
+    } else if (bigIcon) {
       bigappicon = <img src={bigIconimg} alt="avatar2222" style={{ width: '100%' }} />;
     } else {
       bigappicon = <PlusOutlined />;
@@ -134,15 +311,37 @@ class light extends Component {
         <div>
           {/* <h4>{this.state.title}</h4> */}
           <Form
+            ref={this.formRef}
+            onFinish={this.onFinish}
             initialValues={{
-              ifCarryUser: '0',
-              ifHome: '1',
-              appStatus: '0',
-              ifHot: '1',
-              ifBigPicUrl: '1',
+              name: this.props.lightData.name,
+              appType: appType,
+              deptId: deptId,
+              appVariety: this.state.appVariety || appVariety,
+              ifCarryUser: ifCarryUser || '0',
+              ifHome: ifHome || '1',
+              appStatus: appStatus || '0',
+              ifHot: ifHot || '1',
+              ifBigPicUrl: ifBigPicUrl || '1',
+              icon: icon || this.state.icon,
+              content: content || '',
+              appMenuId: appMenuId,
+              callBackUrl: callBackUrl || '',
+              linkman: linkman || '',
+              phone: phone || '',
+              version: version || '',
+              bigIcon: bigIcon || this.state.bigIcon,
             }}
           >
             <Row gutter={16}>
+              <Col span={11}>
+                <Form.Item label="轻应用类型" name="appVariety">
+                  <Select placeholder="请选择轻应用类型" onChange={this.ifwx}>
+                    <Option value="0">H5</Option>
+                    <Option value="1">微信小程序</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
               <Col span={11}>
                 <Form.Item
                   label="应用名称"
@@ -152,42 +351,31 @@ class light extends Component {
                   <Input placeholder="请输入应用名称" />
                 </Form.Item>
               </Col>
-              <Col span={11}>
-                <Form.Item
-                  label="回调地址"
-                  name="callBackUrl"
-                  rules={[
-                    { required: true, message: '请输入授权回调地址！' },
-                    {
-                      pattern: /([hH][tT]{2}[pP]|[hH][tT]{2}[pP][sS]):\/\/([\w.]+\/?)\S*/,
-                      message: '请输入正确的链接格式',
-                    },
-                  ]}
-                >
-                  <Input placeholder="请输入回调地址" />
-                </Form.Item>
-              </Col>
             </Row>
-            <Row gutter={16}>
-              <Col span={11}>
-                <Form.Item label="访问方式" name="ifCarryUser">
-                  <Select placeholder="请选择访问方式">
-                    <Option value="0">未认证</Option>
-                    <Option value="1">访客</Option>
-                    <Option value="2">已认证</Option>
-                  </Select>
-                </Form.Item>
-              </Col>
-              <Col span={11}>
-                <Form.Item
-                  label="版本号"
-                  name="version"
-                  rules={[{ required: true, message: '请输入版本号' }]}
-                >
-                  <Input placeholder="请输入版本号" />
-                </Form.Item>
-              </Col>
-            </Row>
+            {ifwx === '0' ? (
+              <Row gutter={16}>
+                <Col span={11}>
+                  <Form.Item label="访问方式" name="ifCarryUser">
+                    <Select placeholder="请选择访问方式">
+                      <Option value="0">未认证</Option>
+                      <Option value="1">访客</Option>
+                      <Option value="2">已认证</Option>
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col span={11}>
+                  <Form.Item
+                    label="版本号"
+                    name="version"
+                    rules={[{ required: true, message: '请输入版本号' }]}
+                  >
+                    <Input placeholder="请输入版本号" />
+                  </Form.Item>
+                </Col>
+              </Row>
+            ) : (
+              ''
+            )}
             <Row gutter={16}>
               <Col span={11}>
                 <Form.Item
@@ -195,25 +383,36 @@ class light extends Component {
                   name="appType"
                   rules={[{ required: true, message: '请输入应用类别' }]}
                 >
-                  <Select placeholder="请输入应用类别！">
-                    {/* <Option value="0">未认证</Option>
-                                            <Option value="1">访客</Option>
-                                            <Option value="2">已认证</Option> */}
-                  </Select>
+                  <Select placeholder="请输入应用类别！">{this.state.DictData}</Select>
                 </Form.Item>
               </Col>
-              <Col span={11}>
-                <Form.Item
-                  label="应用状态"
-                  name="appStatus"
-                  rules={[{ required: true, message: '请输入应用状态！' }]}
-                >
-                  <Select>
-                    <Option value="0">启用</Option>
-                    <Option value="1">禁用</Option>
-                  </Select>
-                </Form.Item>
-              </Col>
+              {ifwx === '0' ? (
+                <Col span={11}>
+                  <Form.Item
+                    label="回调地址"
+                    name="callBackUrl"
+                    rules={[
+                      { required: true, message: '请输入授权回调地址！' },
+                      {
+                        pattern: /([hH][tT]{2}[pP]|[hH][tT]{2}[pP][sS]):\/\/([\w.]+\/?)\S*/,
+                        message: '请输入正确的链接格式',
+                      },
+                    ]}
+                  >
+                    <Input placeholder="请输入回调地址" />
+                  </Form.Item>
+                </Col>
+              ) : (
+                <Col span={11}>
+                  <Form.Item
+                    label="微信appId"
+                    name="callBackUrl"
+                    rules={[{ required: true, message: '请输入微信appId！' }]}
+                  >
+                    <Input placeholder="请输入微信appId" />
+                  </Form.Item>
+                </Col>
+              )}
             </Row>
             <Row gutter={16}>
               <Col span={11}>
@@ -222,7 +421,7 @@ class light extends Component {
                   name="appMenuId"
                   rules={[{ required: true, message: '请输入所属菜单' }]}
                 >
-                  <Select placeholder="请输入所属菜单！"></Select>
+                  <TreeSelect treeData={this.state.treeData} placeholder="请选择所属菜单" />
                 </Form.Item>
               </Col>
               <Col span={11}>
@@ -280,12 +479,20 @@ class light extends Component {
             </Row>
             <Row gutter={16}>
               <Col span={11}>
+                <Form.Item label="所属委办局" name="deptId">
+                  <Select placeholder="请选择所属委办局"> {this.state.shuoshuSelect}</Select>
+                </Form.Item>
+              </Col>
+              <Col span={11}>
                 <Form.Item
-                  label="所属委办局"
-                  name="deptId"
-                  rules={[{ required: true, message: '请选择所属委办局' }]}
+                  label="应用状态"
+                  name="appStatus"
+                  rules={[{ required: true, message: '请输入应用状态！' }]}
                 >
-                  <Select placeholder="请选择所属委办局"></Select>
+                  <Select>
+                    <Option value="0">启用</Option>
+                    <Option value="1">禁用</Option>
+                  </Select>
                 </Form.Item>
               </Col>
             </Row>
@@ -311,25 +518,26 @@ class light extends Component {
                   </>
                 </Form.Item>
               </Col>
-
               <Col span={11}>
-                {this.state.ifBigPicUrl === '0' ? (
+                {bigImg === '0' ? (
                   <Form.Item
                     label="大图图标"
-                    name="icon"
+                    name="bigIcon"
                     rules={[{ required: true, message: '请输入大图！' }]}
                   >
-                    <Upload
-                      className="avatar-big-uploader"
-                      {...props}
-                      beforeUpload={this.beforeUpload}
-                      onChange={this.handleChange}
-                    >
-                      {bigappicon}
-                    </Upload>
-                    <span style={{ fontSize: 10 }}>
-                      大图分辨率：750*252，只能上传jpg/png/jpeg格式，且不超过5MB!
-                    </span>
+                    <>
+                      <Upload
+                        className="avatar-big-uploader"
+                        {...props}
+                        beforeUpload={this.beforebigUpload}
+                        onChange={this.handleBigChange}
+                      >
+                        {bigappicon}
+                      </Upload>
+                      <span style={{ fontSize: 10 }}>
+                        大图分辨率：750*252，只能上传jpg/png/jpeg格式，且不超过5MB!
+                      </span>
+                    </>
                   </Form.Item>
                 ) : (
                   ''
@@ -350,7 +558,7 @@ class light extends Component {
             </Row>
             <Row gutter={16}>
               <div className="btnox">
-                <Button onClick={this.onOk2} className="okbtn" type="primary">
+                <Button type="primary" htmlType="submit" className="okbtn">
                   确认
                 </Button>
                 <Button onClick={this.handleCancel2}>取消</Button>
@@ -363,4 +571,8 @@ class light extends Component {
   }
 }
 
-export default light;
+export default connect(({ lihghtmodel, loading }) => ({
+  lihghtmodel,
+  loading: loading.models.lihghtmodel,
+}))(light);
+// export default light;
