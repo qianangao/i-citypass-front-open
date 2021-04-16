@@ -10,6 +10,7 @@ import {
   ConfigProvider,
   Pagination,
   Select,
+  message,
 } from 'antd';
 import { connect } from 'umi';
 import Linght from '../../components/light/light';
