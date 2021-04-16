@@ -281,6 +281,13 @@ class lightApplication extends Component {
         align: 'center',
       },
       {
+        title: '轻应用类型',
+        dataIndex: 'appVariety',
+        id: 'appVariety',
+        align: 'center',
+        render: (val) => <span>{val === '0' ? 'H5' : '微信小程序'}</span>,
+      },
+      {
         title: '应用类别',
         dataIndex: 'appType',
         id: 'appType',
