@@ -10,7 +10,6 @@ import {
   ConfigProvider,
   Pagination,
   Select,
-  message,
 } from 'antd';
 import { connect } from 'umi';
 import Linght from '../../components/light/light';
@@ -75,10 +74,12 @@ class lightApplication extends Component {
       payload: params,
     }).then((res) => {
       // console.log(res)
-      this.setState({
-        dataSource: res.data.rows,
-        total: res.data.total,
-      });
+      if (res.code === 200) {
+        this.setState({
+          dataSource: res.data.rows,
+          total: res.data.total,
+        });
+      }
     });
   };
   // 表单提交事件
