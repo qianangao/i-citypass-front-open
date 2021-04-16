@@ -11,3 +11,13 @@ export async function getCode() {
     method: 'GET',
   });
 }
+export async function getUserInfo() {
+  return request('/api/system/user/getUserInfo', {
+    method: 'GET',
+  });
+}
+export async function logout() {
+  return request('/api/auth/logout', {
+    method: 'DELETE',
+  });
+}

@@ -1,13 +1,14 @@
-import { LogoutOutlined } from '@ant-design/icons';
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 // import { Avatar, Menu, Spin } from 'antd';
-import { Avatar, Menu } from 'antd';
+import { Avatar, Menu, message } from 'antd';
 import React from 'react';
-import { history, connect } from 'umi';
+import { connect } from 'umi';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
 import LoginPage from './Login/Login';
 import LoginIcon from '@/assets/login.png';
 
+const IconText = ({ icon }) => <span>{icon}</span>;
 class AvatarDropdown extends React.Component {
   state = {
     modalVisible: false,
@@ -33,19 +34,22 @@ class AvatarDropdown extends React.Component {
       const { dispatch } = this.props;
       if (dispatch) {
         dispatch({
-          type: 'login/logout',
+          type: 'loginPageContent/logout',
+        }).then((res) => {
+          if (res.code === 200) {
+            message.success('退出成功！');
+            localStorage.setItem('accessToken', '');
+          }
         });
       }
-      return;
     }
-    history.push(`/account/${key}`);
   };
 
   render() {
     const {
       currentUser = {
         avatar: '',
-        name: '',
+        userName: '',
       },
       menu,
     } = this.props;
@@ -71,11 +75,17 @@ class AvatarDropdown extends React.Component {
         </Menu.Item>
       </Menu>
     );
-    return currentUser && !currentUser.name ? (
+    return currentUser && currentUser.userName ? (
       <HeaderDropdown overlay={menuHeaderDropdown}>
         <span className={`${styles.action} ${styles.account}`}>
-          <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
-          <span className={`${styles.name} anticon`}>{currentUser.name}</span>
+          {currentUser.avatar ? (
+            <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
+          ) : (
+            <span className={styles.avatarImg}>
+              <IconText key="like" icon={<UserOutlined />} />
+            </span>
+          )}
+          <span className={`${styles.name} anticon`}>{currentUser.userName}</span>
         </span>
       </HeaderDropdown>
     ) : (
@@ -100,6 +110,6 @@ class AvatarDropdown extends React.Component {
   }
 }
 
-export default connect(({ user }) => ({
-  currentUser: user.currentUser,
+export default connect(({ loginPageContent }) => ({
+  currentUser: loginPageContent.userObj,
 }))(AvatarDropdown);

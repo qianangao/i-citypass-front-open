@@ -16,7 +16,7 @@ class SecurityLayout extends React.Component {
 
     if (dispatch) {
       dispatch({
-        type: 'user/fetchCurrent',
+        type: 'loginPageContent/getUserInfo',
       });
     }
   }
