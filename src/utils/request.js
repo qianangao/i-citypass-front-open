@@ -45,7 +45,7 @@ request.interceptors.response.use(async (response) => {
   if (data && data.code) {
     if (data.code === 200) {
       // eslint-disable-next-line no-console
-      console.log(data);
+      // console.log(data);
     } else if (data.code === 2001) {
       message.info('登录状态已过期');
     } else {

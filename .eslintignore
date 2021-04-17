@@ -6,3 +6,5 @@ public
 dist
 .umi
 mock
+src/components/light
+src/pages/lightApplication
