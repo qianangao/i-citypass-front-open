@@ -21,3 +21,4 @@ export const isAntDesignProOrDev = () => {
   return isAntDesignPro();
 };
 export const getPageQuery = () => parse(window.location.href.split('?')[1]);
+export const picimgurl = 'http://10.92.119.10/';

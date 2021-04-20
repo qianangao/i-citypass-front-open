@@ -14,6 +14,7 @@ import {
 } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { connect } from 'umi';
+import { picimgurl } from '../../utils/utils';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -41,6 +42,11 @@ class light extends Component {
     this.treelist();
     this.getdept();
     this.getDictData();
+  }
+
+  // 组件卸载之后清除异步组织内存泄露
+  componentWillUnmount() {
+    this.setState = () => false;
   }
 
   // 获取所属委办局
@@ -278,7 +284,7 @@ class light extends Component {
       ifCarryUser,
       appVariety,
     } = this.props.lightData;
-    const imgReadUrl = 'http://10.92.119.10/';
+    const imgReadUrl = picimgurl;
     const imgUrl = imgReadUrl + icon;
     const bigImg = this.state.ifBigPicUrl || ifBigPicUrl;
     const bigIconimg = imgReadUrl + bigIcon;
