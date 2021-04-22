@@ -16,6 +16,7 @@ import Linght from '../../components/light/light';
 import './light.less';
 import locale from 'antd/lib/locale-provider/zh_CN';
 import 'moment/locale/zh-cn';
+import { picimgurl } from '../../utils/utils';
 
 const { Option } = Select;
 // const { Item } = Form;
@@ -250,7 +251,7 @@ class lightApplication extends Component {
   };
 
   render() {
-    const imgReadUrl = 'http://10.92.119.10/';
+    const imgReadUrl = picimgurl;
     const columns = [
       {
         title: '序号',
@@ -356,21 +357,7 @@ class lightApplication extends Component {
         ),
       },
     ];
-    const {
-      loading,
-      dataSource,
-      detailVisible,
-      total,
-      current,
-      pageSize,
-      visible,
-      isAdd,
-      lightData,
-      title,
-      disabled,
-      menuVisible,
-      menuData,
-    } = this.state;
+    const { total, current, pageSize } = this.state;
     return (
       <div>
         {this.state.ifmodel ? (
